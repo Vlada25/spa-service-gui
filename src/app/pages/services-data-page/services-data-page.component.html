@@ -1,0 +1,11 @@
+<div class="main-container">
+    <h2>{{ serviceName }}</h2>
+
+    <div *ngIf="spaServiceService.spaServices">
+        <app-spa-service
+             *ngFor="let spaService of spaServiceService.spaServices"
+             [spaService]="spaService">
+        </app-spa-service> 
+    </div>
+</div>
+

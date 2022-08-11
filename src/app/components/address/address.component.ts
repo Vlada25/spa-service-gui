@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IAddress } from 'src/app/models/address/address';
+import { IAddress } from 'src/app/models/address';
 
 @Component({
   selector: 'app-address',

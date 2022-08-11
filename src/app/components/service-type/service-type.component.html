@@ -1,0 +1,20 @@
+<div class="service-type-container">
+    <div class="text-info-block">
+        <h3>{{ serviceType.name }}</h3>
+        <p><span class="blue-text">Lasting (min): </span>{{ serviceType.lastingInMinutes }}</p>
+        <p><span class="blue-text">Category: </span>{{ serviceType.category }}</p>
+
+        <button class="description-btn" (click)="description = !description">
+            {{ description ? 'Hide' : 'Show' }} Description
+        </button>
+
+        <p *ngIf="description" class="gray-text">{{ serviceType.description }}</p>
+
+        <br>
+        <button class="description-btn" (click)="goToServicesDataPage()">Show addresses and price</button>
+    </div>
+    
+    <img 
+        src="https://st.depositphotos.com/2577341/3143/i/600/depositphotos_31431025-stock-photo-fresh-bamboo.jpg" 
+        [alt]="serviceType.name">
+</div>

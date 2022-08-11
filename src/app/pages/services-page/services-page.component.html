@@ -1,4 +1,16 @@
-<app-address 
-    *ngFor="let address of addresses" 
-    [address]="address">
-</app-address>
+<div class="main-container">
+    <h2>All types of spa procedures are presented and described here.</h2>
+
+    <hr>
+
+    <input class="search-input" type="text" placeholder="Search services" [(ngModel)]="substr">
+
+    <div *ngIf="serviceTypeService.serviceTypes">
+       <app-service-type
+            *ngFor="let serviceType of serviceTypeService.serviceTypes | searchServiceTypes: substr"
+            [serviceType]="serviceType">
+        </app-service-type> 
+    </div>
+    
+</div>
+

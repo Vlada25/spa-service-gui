@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IAddress } from 'src/app/models/address/address';
-import { AddressService } from 'src/app/services/address.service';
+import { ServiceTypeService } from 'src/app/services/service-type.service';
 
 @Component({
   selector: 'app-services-page',
@@ -9,13 +8,11 @@ import { AddressService } from 'src/app/services/address.service';
 })
 export class ServicesPageComponent implements OnInit{
 
-  addresses: IAddress[] = []
+  substr = ''
 
-  constructor(private addressService: AddressService) {}
+  constructor(public serviceTypeService: ServiceTypeService) {}
 
   ngOnInit(): void {
-    this.addressService.getAll().subscribe( addresses => {
-      this.addresses = addresses
-    })
+    this.serviceTypeService.getAll().subscribe( () => {})
   }
 }

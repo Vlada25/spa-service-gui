@@ -1,0 +1,35 @@
+.service-type-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 10px 2% 15px 2%;
+    border: 1px solid #10C9C3;
+    border-radius: 5px;
+}
+
+h3 {
+    font-weight: normal;
+    font-style: italic;
+}
+
+.description-btn {
+    color: #10C9C3;
+    background-color: white;
+    border: 1px solid #10C9C3;
+    margin-bottom: 10px;
+}
+
+.description-btn:hover {
+    box-shadow: 0 0 10px rgba(16, 201, 195, 0.5);
+}
+
+img {
+    margin-top: 5px;
+    width: 40%;
+    height: 300px;
+}
+
+.text-info-block {
+    width: 55%;
+}

@@ -1,1 +1,16 @@
-<p>spa-service works!</p>
+<div class="spa-service-container">
+    <div>
+        <p><span class="blue-text">Address:</span>
+            {{ spaService.address.country }}, 
+            {{ spaService.address.city }}, 
+            {{ spaService.address.street }}, 
+            {{ spaService.address.house }}</p>
+
+        <span><span class="blue-text">Price: </span>{{ spaService.price | currency: 'BYN ' }}</span>
+    </div>
+    
+    <button class="with-border">get</button>
+    
+</div>
+
+

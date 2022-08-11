@@ -9,6 +9,10 @@ import { SpaServiceComponent } from './components/spa-service/spa-service.compon
 import { ServicesPageComponent } from './pages/services-page/services-page.component';
 import { AddressComponent } from './components/address/address.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceTypeComponent } from './components/service-type/service-type.component';
+import { SearchServiceTypesPipe } from './pipes/search-service-types.pipe';
+import { FormsModule } from '@angular/forms';
+import { ServicesDataPageComponent } from './pages/services-data-page/services-data-page.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +21,16 @@ import { HttpClientModule } from '@angular/common/http';
     HomePageComponent,
     SpaServiceComponent,
     ServicesPageComponent,
-    AddressComponent
+    AddressComponent,
+    ServiceTypeComponent,
+    SearchServiceTypesPipe,
+    ServicesDataPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
