@@ -1,0 +1,25 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 100%;
+    padding: 130px 5% 130px 5%;
+    box-sizing: border-box;
+    background-color: #DCE8FF;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+.f-italic {
+    font-style: italic;
+}
+
+.header-container {
+    width: 40%;
+}
+
+.gray-text {
+    color: gray;
+}

@@ -1,20 +1,33 @@
 nav {
     display: flex;
     flex-direction: row;
-    justify-content: right;
+    justify-content: space-between;
     background-color: #DCE8FF;
     box-sizing: border-box;
-    padding: 15px 5% 15px 5%;
+    padding: 20px 5% 20px 5%;
     text-transform: uppercase;
 }
 
-nav > a {
-    margin-left: 5%;
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+
+.nav-container > a {
+    margin-left: 35px;
+    text-decoration: none;
+    color: black;
     cursor: pointer;
     transition: all 0.5s;
 }
 
-nav > a:hover {
+.nav-container > a:hover {
     color: #10C9C3;
     transition: all 0.2s;
+}
+
+.logo-img {
+    width: 35px;
 }
