@@ -11,10 +11,12 @@
         <p *ngIf="description" class="gray-text">{{ serviceType.description }}</p>
 
         <br>
-        <button class="description-btn" (click)="goToServicesDataPage()">Show addresses and price</button>
+        <button class="description-btn" 
+            (click)="goToServicesDataPage(serviceType.name, serviceType.id)">
+            Show addresses and price</button>
     </div>
     
     <img 
-        src="https://st.depositphotos.com/2577341/3143/i/600/depositphotos_31431025-stock-photo-fresh-bamboo.jpg" 
+        [src]="serviceType.photoUrl" 
         [alt]="serviceType.name">
 </div>

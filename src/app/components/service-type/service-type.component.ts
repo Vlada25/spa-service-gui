@@ -15,7 +15,7 @@ export class ServiceTypeComponent{
 
   constructor(private router: Router) {}
   
-  goToServicesDataPage() {
-    this.router.navigate(['servicesData'])
+  goToServicesDataPage(serviceTypeName: string, serviceTypeId: string) {
+    this.router.navigate(['servicesData/', serviceTypeId, serviceTypeName])
   }
 }

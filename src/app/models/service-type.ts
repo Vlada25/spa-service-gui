@@ -5,4 +5,5 @@ export interface IServiceType {
     description: string
     category: string
     photoId: string
+    photoUrl: string
 }

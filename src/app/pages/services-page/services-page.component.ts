@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IServiceType } from 'src/app/models/service-type';
+import { PhotoService } from 'src/app/services/photo.service';
 import { ServiceTypeService } from 'src/app/services/service-type.service';
 
 @Component({
@@ -10,7 +12,9 @@ export class ServicesPageComponent implements OnInit{
 
   substr = ''
 
-  constructor(public serviceTypeService: ServiceTypeService) {}
+  constructor(
+    public serviceTypeService: ServiceTypeService
+    ) {}
 
   ngOnInit(): void {
     this.serviceTypeService.getAll().subscribe( () => {})

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { SpaServiceService } from 'src/app/services/spa-service.service';
 
 @Component({
@@ -10,10 +11,14 @@ export class ServicesDataPageComponent implements OnInit {
 
   serviceName = 'All'
 
-  constructor(public spaServiceService: SpaServiceService) { }
+  constructor(
+    public spaServiceService: SpaServiceService,
+    private activatedRout: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
-    this.spaServiceService.getAll().subscribe( () => {})
+    this.serviceName = this.activatedRout.snapshot.params['name']
+    this.spaServiceService.getByServiceTypeId(this.activatedRout.snapshot.params['id']).subscribe( () => {})
   }
 
 }

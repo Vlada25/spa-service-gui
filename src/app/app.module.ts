@@ -7,7 +7,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SpaServiceComponent } from './components/spa-service/spa-service.component';
 import { ServicesPageComponent } from './pages/services-page/services-page.component';
-import { AddressComponent } from './components/address/address.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceTypeComponent } from './components/service-type/service-type.component';
 import { SearchServiceTypesPipe } from './pipes/search-service-types.pipe';
@@ -21,7 +20,6 @@ import { ServicesDataPageComponent } from './pages/services-data-page/services-d
     HomePageComponent,
     SpaServiceComponent,
     ServicesPageComponent,
-    AddressComponent,
     ServiceTypeComponent,
     SearchServiceTypesPipe,
     ServicesDataPageComponent

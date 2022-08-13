@@ -26,8 +26,9 @@ h3 {
 
 img {
     margin-top: 5px;
-    width: 40%;
-    height: 300px;
+    width: 400px;
+    height: 400px;
+    box-shadow: 0 0 7px rgba(16, 201, 195, 0.5);
 }
 
 .text-info-block {
