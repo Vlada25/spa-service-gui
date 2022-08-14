@@ -11,12 +11,16 @@ import { ServiceTypeService } from 'src/app/services/service-type.service';
 export class ServicesPageComponent implements OnInit{
 
   substr = ''
+  loading = false
 
   constructor(
     public serviceTypeService: ServiceTypeService
     ) {}
 
   ngOnInit(): void {
-    this.serviceTypeService.getAll().subscribe( () => {})
+    this.loading = true
+    this.serviceTypeService.getAll().subscribe( () => {
+      this.loading = false
+    })
   }
 }

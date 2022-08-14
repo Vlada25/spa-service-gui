@@ -1,0 +1,22 @@
+<div class="main-container">
+    <div *ngIf="!isAuthorized">
+        <button class="btn-with-border" (click)="modalService.open('login')">Log In</button>
+        <button class="btn-with-border" style="margin-left: 20px;">Register</button>
+    </div>
+
+    <div *ngIf="isAuthorized">
+        <button class="btn-with-border">Log Out</button>
+    </div>
+
+    <app-modal title="Log In" 
+        *ngIf="modalService.isVisible$ | async">
+        <app-login></app-login>
+    </app-modal>
+    
+    <!-- <div *ngIf="userService.users">
+        <app-user
+             *ngFor="let user of userService.users"
+             [user]="user">
+         </app-user> 
+     </div> -->
+</div>

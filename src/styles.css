@@ -24,6 +24,10 @@ button:hover {
     transition: all 0.3s;
 }
 
+.btn-with-border {
+    border: 1px solid #10C9C3;
+}
+
 .gray-text {
     color: gray;
 }
@@ -36,4 +40,22 @@ button:hover {
     width: 90%;
     margin-left: 5%;
     margin-top: 50px;
+}
+
+.error-message-under-field {
+    color: red;
+    font-size: 90%;
+    margin: 5px 0 5px 5px;
+}
+
+.flex-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-input {
+    margin-top: 15px;
+    padding: 5px 0 5px 5px;
+    border: 1px solid #10C9C3;
+    border-radius: 5px;
 }

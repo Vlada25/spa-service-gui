@@ -1,0 +1,16 @@
+<form class="flex-form" [formGroup]="form" (ngSubmit)="submit()">
+    <input class="modal-input" type="text" placeholder="Login" formControlName="login">
+    <p class="error-message-under-field" *ngIf="login.errors?.required && login.touched">
+        Login is required!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Password" formControlName="password">
+    <p class="error-message-under-field" *ngIf="password.errors?.required && password.touched">
+        Password is required!
+    </p>
+    <p class="error-message-under-field" *ngIf="password.errors?.minlength && password.touched">
+        Password should consist of 6 symbols or more!
+    </p>
+    
+    <button class="btn-with-border" type="submit">Login</button>
+</form>

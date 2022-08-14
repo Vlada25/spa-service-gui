@@ -10,8 +10,14 @@ import { ServicesPageComponent } from './pages/services-page/services-page.compo
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceTypeComponent } from './components/service-type/service-type.component';
 import { SearchServiceTypesPipe } from './pipes/search-service-types.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServicesDataPageComponent } from './pages/services-data-page/services-data-page.component';
+import { AccountPageComponent } from './pages/account-page/account-page.component';
+import { UserComponent } from './components/user/user.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AdminsPageComponent } from './pages/admins-page/admins-page.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +28,20 @@ import { ServicesDataPageComponent } from './pages/services-data-page/services-d
     ServicesPageComponent,
     ServiceTypeComponent,
     SearchServiceTypesPipe,
-    ServicesDataPageComponent
+    ServicesDataPageComponent,
+    AccountPageComponent,
+    UserComponent,
+    ModalComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminsPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

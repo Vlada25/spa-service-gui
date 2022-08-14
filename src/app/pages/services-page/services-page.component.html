@@ -5,6 +5,8 @@
 
     <input class="search-input" type="text" placeholder="Search services" [(ngModel)]="substr">
 
+    <p *ngIf="loading">Loading...</p>
+
     <div *ngIf="serviceTypeService.serviceTypes">
        <app-service-type
             *ngFor="let serviceType of serviceTypeService.serviceTypes | searchServiceTypes: substr"
