@@ -9,6 +9,8 @@ import { ILoginUser } from '../models/login-user';
 export class AuthenticationService {
 
   token = ''
+  isAdmin = true
+  
   constructor(private httpClient: HttpClient) { }
 
   login(loginUser: ILoginUser): Observable<string> {

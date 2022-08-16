@@ -18,6 +18,8 @@ import { ModalComponent } from './components/modal/modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminsPageComponent } from './pages/admins-page/admins-page.component';
+import { CreateServiceTypeComponent } from './components/creation/create-service-type/create-service-type.component';
+import { CreatePhotoComponent } from './components/creation/create-photo/create-photo.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AdminsPageComponent } from './pages/admins-page/admins-page.component';
     ModalComponent,
     LoginComponent,
     RegisterComponent,
-    AdminsPageComponent
+    AdminsPageComponent,
+    CreateServiceTypeComponent,
+    CreatePhotoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,9 @@
 export interface IServiceType {
-    id: string
+    id?: string
     name: string
     lastingInMinutes: number
     description: string
     category: string
     photoId: string
-    photoUrl: string
+    photoUrl?: string
 }

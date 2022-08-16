@@ -28,4 +28,21 @@ export class ServiceTypeService {
         })
       )
   }
+
+  create(serviceType: IServiceType): Observable<IServiceType> {
+    return this.httpClient.post<IServiceType>('https://localhost:7142/ServiceTypes/Create', serviceType)
+      .pipe(
+        tap(st => {
+          this.serviceTypes.push(st)
+          console.log(st)
+        })
+      )
+  }
+
+  delete(id: string | undefined): Observable<string> {
+    return this.httpClient.delete<string>('https://localhost:7142/ServiceTypes/Delete/' + id)
+      .pipe(
+        tap(mes => console.log(mes))
+      )
+  }
 }

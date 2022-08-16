@@ -8,10 +8,12 @@
         <button class="btn-with-border">Log Out</button>
     </div>
 
-    <app-modal title="Log In" 
-        *ngIf="modalService.isVisible$ | async">
-        <app-login></app-login>
-    </app-modal>
+    <div *ngIf="modalService.isLogin$ | async">
+        <app-modal title="Log In" *ngIf="modalService.isVisible$ | async">
+            <app-login></app-login>
+        </app-modal>
+    </div>
+    
     
     <!-- <div *ngIf="userService.users">
         <app-user

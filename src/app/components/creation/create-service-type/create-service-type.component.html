@@ -1,0 +1,39 @@
+<form class="flex-form" [formGroup]="form" (ngSubmit)="submit(photoService.photo.id)">
+    <input class="modal-input" type="text" placeholder="Name" formControlName="name">
+    <p class="error-message-under-field" *ngIf="name.errors?.required">
+        Name is required!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Lasting (min)" formControlName="lastingInMinutes">
+    <p class="error-message-under-field" *ngIf="lastingInMinutes.errors?.required">
+        Lasting is required!
+    </p>
+
+    <div class="photo-url-block">
+        <input class="modal-input photo-url-input" type="text" placeholder="Photo Url" formControlName="photoUrl">
+        <button class="btn-with-border" (click)="findPhoto()">Find</button>
+    </div>
+    <img class="photo" *ngIf="showPhoto" [src]="photoService.photo.url" alt="Selected photo">
+    <p class="error-message-under-field" *ngIf="photoUrl.errors?.required">
+        Photo Url is required!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Description" formControlName="description">
+    <p class="error-message-under-field" *ngIf="description.errors?.required">
+        Description is required!
+    </p>
+
+    <select class="modal-input" formControlName="category">
+        <option value="For Hair">For Hair</option>
+        <option value="For Face">For Face</option>
+        <option value="For Hands">For Hands</option>
+        <option value="For Legs">For Legs</option>
+        <option value="For Body">For Body</option>
+        <option value="Total Care">Total Care</option>
+    </select>
+    <p class="error-message-under-field" *ngIf="category.errors?.required">
+        Category is required!
+    </p>
+    
+    <button class="btn-with-border" type="submit">Create</button>
+</form>

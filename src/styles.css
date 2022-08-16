@@ -38,8 +38,7 @@ button:hover {
 
 .main-container {
     width: 90%;
-    margin-left: 5%;
-    margin-top: 50px;
+    margin: 50px 5% 50px 5%;
 }
 
 .error-message-under-field {

@@ -13,7 +13,21 @@
         <br>
         <button class="description-btn" 
             (click)="goToServicesDataPage(serviceType.name, serviceType.id)">
-            Show addresses and price</button>
+            Show addresses and price
+        </button>
+
+        <br>
+        <button class="description-btn"
+            *ngIf="authService.isAdmin"
+            (click)="deleteServiceType()">
+            Delete
+        </button>
+
+        <button class="description-btn"
+            *ngIf="authService.isAdmin"
+            style="margin-left: 20px;">
+            Update
+        </button>
     </div>
     
     <img 
