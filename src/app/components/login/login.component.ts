@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ModalService } from 'src/app/services/modal.service';
 
@@ -8,7 +10,9 @@ import { ModalService } from 'src/app/services/modal.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+
+  aSub: Subscription
 
   form = new FormGroup({
     login: new FormControl<string>('', [
@@ -22,7 +26,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private modalService: ModalService) { }
+    private modalService: ModalService,
+    private router: Router) { }
 
   get login() {
     return this.form.controls.login as FormControl
@@ -35,12 +40,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    if (this.aSub){
+      this.aSub.unsubscribe
+    }
+  }
+
   submit() {
-    this.authService.login({
+    this.aSub = this.authService.login({
       userName: this.form.value.login as string,
       password: this.form.value.password as string
     }).subscribe( () => {
       this.modalService.close()
+      alert('You entered successfully!')
+      this.router.navigate(['/'])
     })
   }
 

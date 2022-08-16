@@ -6,6 +6,6 @@
         <a routerLink="/services">Services</a>
         <a>Schedule</a>
         <a routerLink="/account">Account</a> 
-        <a routerLink="/forAdmins">For Admins</a>
+        <a *ngIf="authService.isAuthorized()" routerLink="/forAdmins">For Admins</a>
     </div>
 </nav>

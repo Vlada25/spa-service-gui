@@ -1,1 +1,58 @@
-<p>register works!</p>
+<form class="flex-form" [formGroup]="form" (ngSubmit)="submit()">
+    <input class="modal-input" type="text" placeholder="Surname" formControlName="surname">
+    <p class="error-message-under-field" *ngIf="surname.errors?.required">
+        Surname is required!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Name" formControlName="name">
+    <p class="error-message-under-field" *ngIf="name.errors?.required">
+        Name is required!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Middle Name" formControlName="middleName">
+    <p class="error-message-under-field" *ngIf="middleName.errors?.required">
+        Middle Name is required!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Login" formControlName="login">
+    <p class="error-message-under-field" *ngIf="login.errors?.required">
+        Login is required!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Email" formControlName="email">
+    <p class="error-message-under-field" *ngIf="email.errors?.required">
+        Email is required!
+    </p>
+    <p class="error-message-under-field" *ngIf="email.errors?.pattern">
+        Email is incorrect!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Password" formControlName="password">
+    <p class="error-message-under-field" *ngIf="password.errors?.required">
+        Password is required!
+    </p>
+    <p class="error-message-under-field" *ngIf="password.errors?.minlength">
+        Password should consist of 6 symbols or more!
+    </p>
+    <p class="error-message-under-field" *ngIf="password.errors?.pattern">
+        Password should include at least one digit and one lowercase letter!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Confirm Password" formControlName="confirmPassword">
+    <p class="error-message-under-field" *ngIf="confirmPassword.errors?.required">
+        Confirmed password is required!
+    </p>
+    <p class="error-message-under-field" *ngIf="confirmPassword.errors?.minlength">
+        Confirmed password should consist of 6 symbols or more!
+    </p>
+    <p class="error-message-under-field" *ngIf="confirmPassword.errors?.pattern">
+        Confirmed password should include at least one digit and one lowercase letter!
+    </p>
+
+    <select class="modal-input" multiple formControlName="roles">
+        <option value="Admin">Admin</option>
+        <option value="Manager">Manager</option>
+    </select>
+    
+    <button class="btn-with-border" type="submit">Register</button>
+</form>
