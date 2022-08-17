@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ModalTypes } from '../enums/modal-types';
 
 @Injectable({
   providedIn: 'root'
@@ -11,22 +12,26 @@ export class ModalService {
   isRegister$ = new BehaviorSubject<boolean>(false)
   isServiceType$ = new BehaviorSubject<boolean>(false)
   isPhoto$ = new BehaviorSubject<boolean>(false)
+  isOrder$ = new BehaviorSubject<boolean>(false)
 
   constructor() { }
 
-  open(item: string) {
+  open(item: ModalTypes) {
     switch (item) {
-      case 'login':
+      case ModalTypes.login:
         this.isLogin$.next(true)
         break
-      case 'register':
+      case ModalTypes.register:
         this.isRegister$.next(true)
         break
-      case 'serviceType':
+      case ModalTypes.serviceType:
         this.isServiceType$.next(true)
         break
-      case 'photo':
+      case ModalTypes.photo:
         this.isPhoto$.next(true)
+        break
+      case ModalTypes.order:
+        this.isOrder$.next(true)
         break
     }
     this.isVisible$.next(true)
@@ -38,5 +43,6 @@ export class ModalService {
     this.isRegister$.next(false)
     this.isServiceType$.next(false)
     this.isPhoto$.next(false)
+    this.isOrder$.next(false)
   }
 }

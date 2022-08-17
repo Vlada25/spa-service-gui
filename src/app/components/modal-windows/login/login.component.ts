@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -26,8 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthenticationService,
-    private modalService: ModalService,
-    private router: Router) { }
+    private modalService: ModalService) { }
 
   get login() {
     return this.form.controls.login as FormControl
@@ -55,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(() => {})
       this.modalService.close()
       alert('You entered successfully!')
-      this.router.navigate(['/'])
+      location.reload()
     })
   }
 

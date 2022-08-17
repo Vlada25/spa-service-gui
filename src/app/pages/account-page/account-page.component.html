@@ -1,11 +1,11 @@
 <div class="main-container">
     <div *ngIf="!authService.isAuthorized()" class="btns-container-1">
         <button class="btn-with-border no-margin-btn" 
-            (click)="modalService.open('login')"
+            (click)="modalService.open(login)"
             style="margin-right: 20px;">
             Log In</button>
         <button class="btn-with-border no-margin-btn" 
-            (click)="modalService.open('register')">
+            (click)="modalService.open(register)">
             Register
         </button>
     </div>
@@ -30,21 +30,28 @@
     <!-- Account Info -->
 
     <div class="account-info" *ngIf="authService.isAuthorized()">
-        <h3>{{ authService.currentUser.surname }} {{ authService.currentUser.name }} {{ authService.currentUser.middleName }}</h3>
+        <div>
+            <h3>{{ authService.currentUser.surname }} {{ authService.currentUser.name }} {{ authService.currentUser.middleName }}</h3>
 
-        <img [src]="authService.currentUser.photoUrl" alt="There should be a photo here">
+            <img [src]="authService.currentUser.photoUrl" alt="There should be a photo here">
 
-        <button class="btn-with-border" (click)="modalService.open('photo')">Load photo</button>
-        <button class="btn-with-border" 
-            style="margin-left: 20px;"
-            (click)="deletePhoto()">
-            Delete photo
-        </button>
+            <button class="btn-with-border" (click)="modalService.open(photo)">Load photo</button>
+            <button class="btn-with-border" 
+                style="margin-left: 20px;"
+                (click)="deletePhoto()">
+                Delete photo
+            </button>
 
-        <div *ngIf="modalService.isPhoto$ | async">
-            <app-modal title="Create Photo" *ngIf="modalService.isVisible$ | async">
-                <app-create-photo></app-create-photo>
-            </app-modal>
+            <div *ngIf="modalService.isPhoto$ | async">
+                <app-modal title="Create Photo" *ngIf="modalService.isVisible$ | async">
+                    <app-create-photo></app-create-photo>
+                </app-modal>
+            </div>
         </div>
+        
+        <div class="account-info-right">
+            <button class="btn-with-border" (click)="showOrders()">My orders</button>
+        </div>
+
     </div>
 </div>

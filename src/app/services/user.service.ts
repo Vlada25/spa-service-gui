@@ -13,8 +13,7 @@ export class UserService {
   user: IUser
 
   constructor(
-    private httpClient: HttpClient,
-    private photoService: PhotoService) { }
+    private httpClient: HttpClient) { }
 
   getAll(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>('https://localhost:7142/Users/GetAll')

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalTypes } from 'src/app/enums/modal-types';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -8,7 +9,11 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class AdminsPageComponent implements OnInit {
 
-  constructor(public modalService: ModalService) { }
+  photo = ModalTypes.photo
+  serviceType = ModalTypes.serviceType
+  
+  constructor(
+    public modalService: ModalService) { }
 
   ngOnInit(): void {
   }

@@ -25,6 +25,13 @@ h3 {
 
 .account-info {
     margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.account-info-right {
+    margin-top: 43px;
+    margin-left: 50px;
 }
 
 img {

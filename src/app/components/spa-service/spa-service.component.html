@@ -9,8 +9,19 @@
         <span><span class="blue-text">Price: </span>{{ spaService.price | currency: 'BYN ' }}</span>
     </div>
     
-    <button class="btn-with-border">get</button>
+    <button class="btn-with-border" (click)="signUpForProcedur()">get</button>
     
+    <div *ngIf="modalService.isLogin$ | async">
+        <app-modal title="Authorization" *ngIf="modalService.isVisible$ | async">
+            <app-login></app-login>
+        </app-modal>
+    </div>
+
+    <div *ngIf="modalService.isOrder$ | async">
+        <app-modal title="Sign Up For Spa Procedure" *ngIf="modalService.isVisible$ | async">
+            <app-do-order></app-do-order>
+        </app-modal>
+    </div>
 </div>
 
 

@@ -1,0 +1,11 @@
+<div class="main-container">
+    <p *ngIf="loading">Loading...</p>
+
+    <div *ngIf="orderService.orders">
+       <app-order
+            *ngFor="let order of orderService.orders"
+            [order]="order">
+        </app-order> 
+    </div>
+    
+</div>
