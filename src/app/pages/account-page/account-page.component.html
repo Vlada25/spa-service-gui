@@ -1,19 +1,22 @@
 <div class="main-container">
-    <div *ngIf="!authService.isAuthorized()">
-        <button class="btn-with-border" (click)="modalService.open('login')">Log In</button>
-        <button class="btn-with-border" 
-            style="margin-left: 20px;"
+    <div *ngIf="!authService.isAuthorized()" class="btns-container-1">
+        <button class="btn-with-border no-margin-btn" 
+            (click)="modalService.open('login')"
+            style="margin-right: 20px;">
+            Log In</button>
+        <button class="btn-with-border no-margin-btn" 
             (click)="modalService.open('register')">
             Register
         </button>
     </div>
 
-    <div *ngIf="authService.isAuthorized()">
-        <button class="btn-with-border">Log Out</button>
+    <div *ngIf="authService.isAuthorized()" class="btns-container-2">
+        <h1><span class="blue-text">Hello, </span><span class="f-italic">{{ authService.currentUser.userName }}</span></h1>
+        <button class="btn-with-border no-margin-btn" (click)="authService.logOut()">Log Out</button>
     </div>
 
     <div *ngIf="modalService.isLogin$ | async">
-        <app-modal title="Log In" *ngIf="modalService.isVisible$ | async">
+        <app-modal title="Authorization" *ngIf="modalService.isVisible$ | async">
             <app-login></app-login>
         </app-modal>
     </div>
@@ -22,5 +25,26 @@
         <app-modal title="Registration" *ngIf="modalService.isVisible$ | async">
             <app-register></app-register>
         </app-modal>
+    </div>
+
+    <!-- Account Info -->
+
+    <div class="account-info" *ngIf="authService.isAuthorized()">
+        <h3>{{ authService.currentUser.surname }} {{ authService.currentUser.name }} {{ authService.currentUser.middleName }}</h3>
+
+        <img [src]="authService.currentUser.photoUrl" alt="There should be a photo here">
+
+        <button class="btn-with-border" (click)="modalService.open('photo')">Load photo</button>
+        <button class="btn-with-border" 
+            style="margin-left: 20px;"
+            (click)="deletePhoto()">
+            Delete photo
+        </button>
+
+        <div *ngIf="modalService.isPhoto$ | async">
+            <app-modal title="Create Photo" *ngIf="modalService.isVisible$ | async">
+                <app-create-photo></app-create-photo>
+            </app-modal>
+        </div>
     </div>
 </div>

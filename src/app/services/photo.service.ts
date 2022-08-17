@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { IPhoto } from '../models/photo';
 import { IUrl } from '../models/url';
+import { IUserPhoto } from '../models/userPhoto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class PhotoService {
   }
 
   getByUrl(url: IUrl): Observable<IPhoto> {
-    return this.httpClient.post<IPhoto>('https://localhost:7258/api/Photos/GetByUrl', url)
+    return this.httpClient.post<IPhoto>('https://localhost:7142/Photos/GetByUrl', url)
       .pipe(
         tap( p => this.photo = p )
       )
@@ -32,8 +33,29 @@ export class PhotoService {
       .pipe(
         tap(p => {
           this.photo = p
-          console.log(p)
         })
+      )
+  }
+
+  delete(id: string | undefined): Observable<string> {
+    return this.httpClient.delete<string>('https://localhost:7142/Photos/Delete/' + id)
+      .pipe(
+        tap(mes => console.log(mes))
+      )
+  }
+
+  getPhotoIdByUserId(userId: string): Observable<string> {
+    return this.httpClient.get<string>('https://localhost:7142/UserPhotos/GetPhotoIdByUserId/' + userId)
+  }
+
+  createUserPhoto(userPhoto: IUserPhoto): Observable<IUserPhoto> {
+    return this.httpClient.post<IUserPhoto>('https://localhost:7142/UserPhotos/Create', userPhoto);
+  }
+
+  deleteUserPhotoByUserId(userId: string): Observable<string> {
+    return this.httpClient.delete<string>('https://localhost:7142/UserPhotos/DeleteByUserId/' + userId)
+      .pipe(
+        tap(mes => console.log(mes))
       )
   }
 }

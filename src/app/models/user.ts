@@ -5,4 +5,7 @@ export interface IUser {
     name: string
     middleName: string
     email: string
+    photoUrl?: string
+    photoId?: string
+    roles?: string[]
 }

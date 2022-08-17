@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { ILoginUser } from '../models/login-user';
 import { IRegisterUser } from '../models/register-user';
+import { IUser } from '../models/user';
+import { PhotoService } from './photo.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +13,19 @@ import { IRegisterUser } from '../models/register-user';
 export class AuthenticationService {
 
   private token = ''
-  isAdmin = true
+  currentUser: IUser
   
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private photoService: PhotoService,
+    private userService: UserService) { }
 
-  login(loginUser: ILoginUser): Observable<string> {
-    return this.httpClient.post<string>('https://localhost:7142/Accounts/Login', loginUser)
+  login(loginUser: ILoginUser): Observable<{token: string}> {
+    return this.httpClient.post<{token: string}>('https://localhost:7142/Accounts/Login', loginUser)
       .pipe(
-        tap(t => {
-          this.setToken(t)
-          console.log(t)
-          localStorage.setItem('token', 'Bearer ' + t)
+        tap(({token}) => {
+          this.setToken(token)
+          localStorage.setItem('token', token)
          })
       )
   }
@@ -39,7 +44,9 @@ export class AuthenticationService {
 
   logOut() {
     this.setToken('')
-    localStorage.clear
+    localStorage.setItem('token', '')
+    localStorage.setItem('login', '')
+    location.reload()
   }
 
   register(registerUser: IRegisterUser): Observable<string> {
@@ -47,5 +54,40 @@ export class AuthenticationService {
       .pipe(
         tap(mes => console.log(mes))
       )
+  }
+
+  getByLogin(login: string): Observable<IUser> {
+    return this.httpClient.get<IUser>('https://localhost:7142/Users/Get/' + login)
+      .pipe(
+        tap(u => {
+          this.photoService.getPhotoIdByUserId(u.id)
+            .subscribe(photoId => {
+              u.photoId = photoId
+              this.photoService.get(photoId)
+                .subscribe(photo => u.photoUrl = photo.url)
+            })
+          this.userService.getUserRoles(u.userName)
+            .subscribe(roles => u.roles = roles)
+          this.currentUser = u
+          localStorage.setItem('login', u.userName)
+        })
+      )
+  }
+
+  deleteOldPhoto() {
+    this.photoService.delete(this.currentUser.photoId)
+      .subscribe(() => {})
+
+    this.photoService.deleteUserPhotoByUserId(this.currentUser.id)
+      .subscribe(() => {})
+  }
+
+  isAdmin(): boolean { 
+    if (this.currentUser != null){
+      if (this.currentUser.roles?.includes('Admin')){
+        return true;
+      }
+    }
+    return false;
   }
 }

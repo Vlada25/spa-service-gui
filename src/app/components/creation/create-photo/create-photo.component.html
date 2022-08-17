@@ -1,1 +1,8 @@
-<p>create-photo works!</p>
+<form class="flex-form" [formGroup]="form" (ngSubmit)="submit()">
+    <input class="modal-input" type="text" placeholder="Url" formControlName="url">
+    <p class="error-message-under-field" *ngIf="url.errors?.required">
+        Url is required!
+    </p>
+    
+    <button class="btn-with-border" type="submit">Create</button>
+</form>

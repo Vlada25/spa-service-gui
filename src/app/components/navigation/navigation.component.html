@@ -2,10 +2,8 @@
     <img class="logo-img" src="https://cdn-icons-png.flaticon.com/512/88/88504.png" alt="logo">
     <div class="nav-container">
         <a routerLink="/">Home</a>
-        <a>About</a>
         <a routerLink="/services">Services</a>
-        <a>Schedule</a>
         <a routerLink="/account">Account</a> 
-        <a *ngIf="authService.isAuthorized()" routerLink="/forAdmins">For Admins</a>
+        <a *ngIf="authService.isAdmin()" routerLink="/forAdmins">For Admins</a>
     </div>
 </nav>

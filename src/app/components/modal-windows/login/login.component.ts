@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       userName: this.form.value.login as string,
       password: this.form.value.password as string
     }).subscribe( () => {
+      this.authService.getByLogin(this.form.value.login as string)
+        .subscribe(() => {})
       this.modalService.close()
       alert('You entered successfully!')
       this.router.navigate(['/'])

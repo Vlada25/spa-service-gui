@@ -18,13 +18,13 @@
 
         <br>
         <button class="description-btn"
-            *ngIf="authService.isAdmin"
+            *ngIf="authService.isAdmin()"
             (click)="deleteServiceType()">
             Delete
         </button>
 
         <button class="description-btn"
-            *ngIf="authService.isAdmin"
+            *ngIf="authService.isAdmin()"
             style="margin-left: 20px;">
             Update
         </button>

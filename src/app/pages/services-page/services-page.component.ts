@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IServiceType } from 'src/app/models/service-type';
-import { PhotoService } from 'src/app/services/photo.service';
 import { ServiceTypeService } from 'src/app/services/service-type.service';
 
 @Component({

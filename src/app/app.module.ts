@@ -7,7 +7,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SpaServiceComponent } from './components/spa-service/spa-service.component';
 import { ServicesPageComponent } from './pages/services-page/services-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServiceTypeComponent } from './components/service-type/service-type.component';
 import { SearchServiceTypesPipe } from './pipes/search-service-types.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,11 +15,12 @@ import { ServicesDataPageComponent } from './pages/services-data-page/services-d
 import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { UserComponent } from './components/user/user.component';
 import { ModalComponent } from './components/modal/modal.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/modal-windows/login/login.component';
+import { RegisterComponent } from './components/modal-windows/register/register.component';
 import { AdminsPageComponent } from './pages/admins-page/admins-page.component';
 import { CreateServiceTypeComponent } from './components/creation/create-service-type/create-service-type.component';
 import { CreatePhotoComponent } from './components/creation/create-photo/create-photo.component';
+import { TokenInterceptor } from './classes/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,13 @@ import { CreatePhotoComponent } from './components/creation/create-photo/create-
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
