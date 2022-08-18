@@ -9,4 +9,5 @@ export interface IUser {
     photoId?: string
     roles?: string[]
     isPersonExists?: boolean
+    phoneNumber?: string
 }

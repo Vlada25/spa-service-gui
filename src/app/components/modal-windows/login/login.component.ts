@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ModalService } from 'src/app/services/modal.service';
-import { PersonService } from 'src/app/services/person.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +25,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthenticationService,
-    private personService: PersonService,
     private modalService: ModalService) { }
 
   get login() {
@@ -55,6 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(() => {})
       this.modalService.close()
       alert('You entered successfully!')
+      location.reload()
     })
   }
 }

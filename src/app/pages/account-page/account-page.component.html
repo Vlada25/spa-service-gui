@@ -52,7 +52,7 @@
         <div class="account-info-right">
             <div class="phone-container">
 
-                <form class="phone-form">
+                <form class="phone-form" [formGroup]="phoneForm" (ngSubmit)="submitPhone()">
                     <select class="modal-input" id="select-country">
                         <option value="Belarus" selected>Belarus</option>
                         <option value="Russia" disabled>Russia</option>
@@ -61,7 +61,8 @@
                         style="margin-left: 10px;"
                         type="tel" 
                         id="phone-input" 
-                        placeholder="Phone number">
+                        placeholder="Phone number"
+                        formControlName="phone">
                     <button class="mini-btn" type="submit">save</button>
                 </form>
             </div>
@@ -73,7 +74,7 @@
             <hr>
 
             <div style="margin-top: 70px">
-                <p><span class="blue-text">Phone: </span><span class="f-italic"></span></p>
+                <p><span class="blue-text">Phone: </span><span class="f-italic">{{ authService.currentUser.phoneNumber }}</span></p>
                 <p><span class="blue-text">Email: </span><span class="f-italic">{{ authService.currentUser.email }}</span></p>
             </div>
         </div>

@@ -12,18 +12,16 @@
 
   <script src="https://unpkg.com/imask"></script>
   <script> 
-    var maskOptions = {
-        mask: '+{375} (00) 000-00-00'
-    }
-
-    var mask
-
     document.addEventListener("DOMContentLoaded", function() {
       var phoneInput = document.querySelector('#phone-input')
 
       phoneInput.value = '+375'
 
-      mask = IMask(phoneInput, maskOptions);
+      var maskOptions = {
+        mask: '+{375} (00) 000-00-00'
+      }
+
+      var mask = IMask(phoneInput, maskOptions);
     })
     
     // document.addEventListener("change", function() {

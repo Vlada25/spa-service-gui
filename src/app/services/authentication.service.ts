@@ -74,7 +74,8 @@ export class AuthenticationService {
               u.roles = roles
               if (roles.length === 0) {
                 this.personService.getClientByUserId(u.id)
-                  .subscribe(() => {
+                  .subscribe(c => {
+                    u.phoneNumber = c.phoneNumber
                     u.isPersonExists = true
                   })
               }
