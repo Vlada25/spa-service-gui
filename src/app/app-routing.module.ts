@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'servicesData/:id/:name', component: ServicesDataPageComponent },
   { path: 'account', component: AccountPageComponent },
   { path: 'forAdmins', component: AdminsPageComponent, canActivateChild: [AuthGuard] },
-  { path: 'orders', component: OrdersPageComponent }
+  { path: 'orders', component: OrdersPageComponent, canActivateChild: [AuthGuard] }
 ];
 
 @NgModule({

@@ -9,5 +9,34 @@
 </head>
 <body>
   <app-root></app-root>
+
+  <script src="https://unpkg.com/imask"></script>
+  <script> 
+    var maskOptions = {
+        mask: '+{375} (00) 000-00-00'
+    }
+
+    var mask
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var phoneInput = document.querySelector('#phone-input')
+
+      phoneInput.value = '+375'
+
+      mask = IMask(phoneInput, maskOptions);
+    })
+    
+    // document.addEventListener("change", function() {
+    //   var phoneInput = document.querySelector('#phone-input')
+    //   var selectCountry = document.querySelector('#select-country')
+
+    //   if (selectCountry.value === "Belarus") {
+        
+    //   }
+    //   else if (selectCountry.value === "Russia") {
+    //     phoneInput.value = ""
+    //   }
+    // })
+  </script>
 </body>
 </html>

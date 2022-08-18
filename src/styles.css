@@ -62,3 +62,9 @@ button:hover {
 .f-italic {
     font-style: italic;
 }
+
+hr {
+    background-color: #10C9C3;
+    height: 1px;
+    border: none;
+}

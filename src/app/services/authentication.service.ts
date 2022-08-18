@@ -4,6 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { ILoginUser } from '../models/login-user';
 import { IRegisterUser } from '../models/register-user';
 import { IUser } from '../models/user';
+import { PersonService } from './person.service';
 import { PhotoService } from './photo.service';
 import { UserService } from './user.service';
 
@@ -18,7 +19,8 @@ export class AuthenticationService {
   constructor(
     private httpClient: HttpClient,
     private photoService: PhotoService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private personService: PersonService) { }
 
   login(loginUser: ILoginUser): Observable<{token: string}> {
     return this.httpClient.post<{token: string}>('https://localhost:7142/Accounts/Login', loginUser)
@@ -60,6 +62,7 @@ export class AuthenticationService {
     return this.httpClient.get<IUser>('https://localhost:7142/Users/Get/' + login)
       .pipe(
         tap(u => {
+          u.isPersonExists = false
           this.photoService.getPhotoIdByUserId(u.id)
             .subscribe(photoId => {
               u.photoId = photoId
@@ -67,7 +70,15 @@ export class AuthenticationService {
                 .subscribe(photo => u.photoUrl = photo.url)
             })
           this.userService.getUserRoles(u.userName)
-            .subscribe(roles => u.roles = roles)
+            .subscribe(roles => {
+              u.roles = roles
+              if (roles.length === 0) {
+                this.personService.getClientByUserId(u.id)
+                  .subscribe(() => {
+                    u.isPersonExists = true
+                  })
+              }
+            })
           this.currentUser = u
           localStorage.setItem('login', u.userName)
         })

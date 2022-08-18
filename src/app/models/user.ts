@@ -8,4 +8,5 @@ export interface IUser {
     photoUrl?: string
     photoId?: string
     roles?: string[]
+    isPersonExists?: boolean
 }

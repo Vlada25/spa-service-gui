@@ -30,10 +30,10 @@
     <!-- Account Info -->
 
     <div class="account-info" *ngIf="authService.isAuthorized()">
-        <div>
+        <div class="account-info-left">
             <h3>{{ authService.currentUser.surname }} {{ authService.currentUser.name }} {{ authService.currentUser.middleName }}</h3>
 
-            <img [src]="authService.currentUser.photoUrl" alt="There should be a photo here">
+            <img class="user-photo" [src]="authService.currentUser.photoUrl">
 
             <button class="btn-with-border" (click)="modalService.open(photo)">Load photo</button>
             <button class="btn-with-border" 
@@ -50,7 +50,32 @@
         </div>
         
         <div class="account-info-right">
-            <button class="btn-with-border" (click)="showOrders()">My orders</button>
+            <div class="phone-container">
+
+                <form class="phone-form">
+                    <select class="modal-input" id="select-country">
+                        <option value="Belarus" selected>Belarus</option>
+                        <option value="Russia" disabled>Russia</option>
+                    </select>
+                    <input class="modal-input"
+                        style="margin-left: 10px;"
+                        type="tel" 
+                        id="phone-input" 
+                        placeholder="Phone number">
+                    <button class="mini-btn" type="submit">save</button>
+                </form>
+            </div>
+
+            <hr>
+
+            <button class="btn-with-border" style="margin-bottom: 20px;" (click)="showOrders()">My orders</button>
+
+            <hr>
+
+            <div style="margin-top: 70px">
+                <p><span class="blue-text">Phone: </span><span class="f-italic"></span></p>
+                <p><span class="blue-text">Email: </span><span class="f-italic">{{ authService.currentUser.email }}</span></p>
+            </div>
         </div>
 
     </div>
