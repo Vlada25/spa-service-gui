@@ -7,7 +7,7 @@ export interface IUser {
     email: string
     photoUrl?: string
     photoId?: string
-    roles?: string[]
+    roles: string[]
     isPersonExists?: boolean
     phoneNumber?: string
 }

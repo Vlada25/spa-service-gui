@@ -1,6 +1,6 @@
 export interface IMaster {
-    id: string
-    userId: string
+    id?: string
+    userId?: string
     phoneNumber: string
-    rating: string
+    rating?: number
 }

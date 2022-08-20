@@ -72,7 +72,10 @@ export class AuthenticationService {
           this.userService.getUserRoles(u.userName)
             .subscribe(roles => {
               u.roles = roles
-              if (roles.length === 0) {
+              if (roles.includes('Master')) {
+                
+              }
+              else {
                 this.personService.getClientByUserId(u.id)
                   .subscribe(c => {
                     u.phoneNumber = c.phoneNumber

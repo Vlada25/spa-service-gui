@@ -4,6 +4,10 @@
         <button class="btn-with-border" (click)="modalService.open(photo)">Create Photo</button>
         <br>
         <button class="btn-with-border" (click)="modalService.open(serviceType)">Create Service Type</button>
+        
+        <!-- Next code can be used just by certain people -->
+        <!-- <br>
+        <button class="btn-with-border" (click)="createPersonsForUsers()">Create Persons</button> -->
     </div>
     
     <div *ngIf="modalService.isPhoto$ | async">
