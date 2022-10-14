@@ -16,12 +16,12 @@ export class ServiceTypeService {
     private photoService: PhotoService) { }
 
   getAll(): Observable<IServiceType[]> {
-    return this.httpClient.get<IServiceType[]>('https://localhost:7142/ServiceTypes/GetAll')
+    return this.httpClient.get<IServiceType[]>('https://localhost:7142/ServiceTypes')
       .pipe(
         tap(servTypes => {
           for (let i = 0; i < servTypes.length; i++){
             this.photoService.get(servTypes[i].photoId).subscribe( p => {
-              servTypes[i].photoUrl = p.url
+              servTypes[i].photoSrc = "data:image/jpg;base64," + p
             })
           }
           this.serviceTypes = servTypes
@@ -30,7 +30,7 @@ export class ServiceTypeService {
   }
 
   create(serviceType: IServiceType): Observable<IServiceType> {
-    return this.httpClient.post<IServiceType>('https://localhost:7142/ServiceTypes/Create', serviceType)
+    return this.httpClient.post<IServiceType>('https://localhost:7142/ServiceTypes', serviceType)
       .pipe(
         tap(st => {
           this.serviceTypes.push(st)
@@ -40,7 +40,7 @@ export class ServiceTypeService {
   }
 
   delete(id: string | undefined): Observable<string> {
-    return this.httpClient.delete<string>('https://localhost:7142/ServiceTypes/Delete/' + id)
+    return this.httpClient.delete<string>('https://localhost:7142/ServiceTypes/' + id)
       .pipe(
         tap(mes => console.log(mes))
       )

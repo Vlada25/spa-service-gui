@@ -14,11 +14,20 @@ export class OrderService {
     private httpClient: HttpClient) { }
 
   getAll(): Observable<IOrder[]> {
-    return this.httpClient.get<IOrder[]>('https://localhost:7142/Orders/GetAll')
+    return this.httpClient.get<IOrder[]>('https://localhost:7142/Orders')
       .pipe(
         tap(orders => {
           this.orders = orders
         })
       )
   }
+
+  //TODO: change order model
+  create(order: IOrder): Observable<IOrder> {
+    return this.httpClient.post<IOrder>('https://localhost:7142/Orders', order)
+      .pipe(
+        tap(order => console.log(order))
+      )
+  }
+
 }

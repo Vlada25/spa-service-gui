@@ -37,7 +37,7 @@ export class AuthenticationService {
   }
 
   getToken(): string {
-    return this.token
+    return 'Bearer ' + this.token
   }
 
   isAuthorized(): boolean {
@@ -52,22 +52,19 @@ export class AuthenticationService {
   }
 
   register(registerUser: IRegisterUser): Observable<string> {
-    return this.httpClient.post<string>('https://localhost:7002/api/Accounts/Register', registerUser)
+    return this.httpClient.post<string>('https://localhost:7142/Accounts/Clients/Register', registerUser)
       .pipe(
         tap(mes => console.log(mes))
       )
   }
 
   getByLogin(login: string): Observable<IUser> {
-    return this.httpClient.get<IUser>('https://localhost:7142/Users/Get/' + login)
+    return this.httpClient.get<IUser>('https://localhost:7142/Users/ByLogin/' + login)
       .pipe(
         tap(u => {
-          u.isPersonExists = false
-          this.photoService.getPhotoIdByUserId(u.id)
-            .subscribe(photoId => {
-              u.photoId = photoId
-              this.photoService.get(photoId)
-                .subscribe(photo => u.photoUrl = photo.url)
+          this.photoService.getPhotoByUserId(u.id)
+            .subscribe(photo => {
+              u.photoSrc = "data:image/jpg;base64," + photo
             })
           this.userService.getUserRoles(u.userName)
             .subscribe(roles => {
@@ -79,7 +76,10 @@ export class AuthenticationService {
                 this.personService.getClientByUserId(u.id)
                   .subscribe(c => {
                     u.phoneNumber = c.phoneNumber
-                    u.isPersonExists = true
+                    u.surname = c.surname
+                    u.name = c.name
+                    u.middleName = c.middleName
+                    console.log(u)
                   })
               }
             })
@@ -90,9 +90,6 @@ export class AuthenticationService {
   }
 
   deleteOldPhoto() {
-    this.photoService.delete(this.currentUser.photoId)
-      .subscribe(() => {})
-
     this.photoService.deleteUserPhotoByUserId(this.currentUser.id)
       .subscribe(() => {})
   }

@@ -19,11 +19,11 @@ import { LoginComponent } from './components/modal-windows/login/login.component
 import { RegisterComponent } from './components/modal-windows/register/register.component';
 import { AdminsPageComponent } from './pages/admins-page/admins-page.component';
 import { CreateServiceTypeComponent } from './components/creation/create-service-type/create-service-type.component';
-import { CreatePhotoComponent } from './components/creation/create-photo/create-photo.component';
 import { TokenInterceptor } from './classes/token-interceptor';
 import { DoOrderComponent } from './components/modal-windows/do-order/do-order.component';
 import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import { OrderComponent } from './components/order/order.component';
+import { PreLoadPhotoComponent } from './components/modal-windows/pre-load-photo/pre-load-photo.component';
 
 @NgModule({
   declarations: [
@@ -42,10 +42,10 @@ import { OrderComponent } from './components/order/order.component';
     RegisterComponent,
     AdminsPageComponent,
     CreateServiceTypeComponent,
-    CreatePhotoComponent,
     DoOrderComponent,
     OrdersPageComponent,
-    OrderComponent
+    OrderComponent,
+    PreLoadPhotoComponent
   ],
   imports: [
     BrowserModule,

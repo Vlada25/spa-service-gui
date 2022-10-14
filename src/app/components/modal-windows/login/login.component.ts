@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(() => {})
       this.modalService.close()
       alert('You entered successfully!')
-      location.reload()
+      //location.reload()
     })
   }
 }

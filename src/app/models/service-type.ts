@@ -5,5 +5,7 @@ export interface IServiceType {
     description: string
     category: string
     photoId: string
-    photoUrl?: string
+    photoSrc?: string
 }
+
+// TODO: photo url

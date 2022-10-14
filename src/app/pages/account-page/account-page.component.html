@@ -20,12 +20,6 @@
             <app-login></app-login>
         </app-modal>
     </div>
-    
-    <div *ngIf="modalService.isRegister$ | async">
-        <app-modal title="Registration" *ngIf="modalService.isVisible$ | async">
-            <app-register></app-register>
-        </app-modal>
-    </div>
 
     <!-- Account Info -->
 
@@ -33,7 +27,7 @@
         <div class="account-info-left">
             <h3>{{ authService.currentUser.surname }} {{ authService.currentUser.name }} {{ authService.currentUser.middleName }}</h3>
 
-            <img class="user-photo" [src]="authService.currentUser.photoUrl">
+            <img class="user-photo" [src]="authService.currentUser.photoSrc">
 
             <button class="btn-with-border" (click)="modalService.open(photo)">Load photo</button>
             <button class="btn-with-border" 
@@ -43,8 +37,8 @@
             </button>
 
             <div *ngIf="modalService.isPhoto$ | async">
-                <app-modal title="Create Photo" *ngIf="modalService.isVisible$ | async">
-                    <app-create-photo></app-create-photo>
+                <app-modal title="Load Photo" *ngIf="modalService.isVisible$ | async">
+                    <app-pre-load-photo></app-pre-load-photo>
                 </app-modal>
             </div>
         </div>

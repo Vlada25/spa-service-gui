@@ -1,4 +1,4 @@
 export interface IPhoto {
     id?: string;
-    url: string
+    filename: string
 }

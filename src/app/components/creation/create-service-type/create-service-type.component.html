@@ -1,4 +1,4 @@
-<form class="flex-form" [formGroup]="form" (ngSubmit)="submit(photoService.photo.id)">
+<form class="flex-form" [formGroup]="form" (ngSubmit)="submit()">
     <input class="modal-input" type="text" placeholder="Name" formControlName="name">
     <p class="error-message-under-field" *ngIf="name.errors?.required">
         Name is required!
@@ -13,7 +13,8 @@
         <input class="modal-input photo-url-input" type="text" placeholder="Photo Url" formControlName="photoUrl">
         <button class="btn-with-border" (click)="findPhoto()">Find</button>
     </div>
-    <img class="photo" *ngIf="showPhoto" [src]="photoService.photo.url" alt="Selected photo">
+    <!-- TODO: photoService.photo.url -->
+    <img class="photo" *ngIf="showPhoto" [src]="" alt="Selected photo">
     <p class="error-message-under-field" *ngIf="photoUrl.errors?.required">
         Photo Url is required!
     </p>

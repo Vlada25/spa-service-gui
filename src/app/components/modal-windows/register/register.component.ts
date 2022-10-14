@@ -83,17 +83,14 @@ export class RegisterComponent implements OnInit {
   submit() {
     var regUser: IRegisterUser = 
     {
-      surmane: this.form.value.surname as string,
+      surname: this.form.value.surname as string,
       name: this.form.value.name as string,
       middleName: this.form.value.middleName as string,
       userName: this.form.value.login as string,
       email: this.form.value.email as string,
       password: this.form.value.password as string,
-      confirmPassword: this.form.value.confirmPassword as string,
-      roles: this.form.value.roles as string[]
+      confirmPassword: this.form.value.confirmPassword as string
     }
-
-    console.log(regUser)
 
     this.authService.register(regUser).subscribe( () => {
       this.modalService.close()

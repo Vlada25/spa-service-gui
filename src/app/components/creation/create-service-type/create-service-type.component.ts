@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { tap } from 'rxjs';
-import { IPhoto } from 'src/app/models/photo';
-import { IUrl } from 'src/app/models/url';
 import { ModalService } from 'src/app/services/modal.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { ServiceTypeService } from 'src/app/services/service-type.service';
@@ -62,23 +59,21 @@ export class CreateServiceTypeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // TODO: need to get filename
   findPhoto(): void {
-    var url: IUrl = {
-      value: this.form.value.photoUrl as string
-    }
 
-    this.photoService.getByUrl(url).subscribe(() => {})
+    // this.photoService.getByUrl(url).subscribe(() => {})
 
     this.showPhoto = true
   }
 
-  submit(photoId: string | undefined) {
+  submit() {
     this.serviceTypeService.create({
       name: this.form.value.name as string,
       lastingInMinutes: Number(this.form.value.lastingInMinutes as string),
       description: this.form.value.description as string,
       category: this.form.value.category as string,
-      photoId: String(photoId)
+      photoId: String("photoId")
     }).subscribe( () => {
       this.modalService.close()
     })

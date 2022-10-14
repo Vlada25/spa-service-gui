@@ -1,1 +1,16 @@
-<p>do-order works!</p>
+<form class="flex-form" [formGroup]="form" (ngSubmit)="doOrder()">
+    <!-- <input class="modal-input" type="text" placeholder="Master" formControlName="master"> -->
+    <select class="modal-input">
+        <option *ngFor="let master of personService.mastersByAddress"></option>
+    </select>
+    <p class="error-message-under-field" *ngIf="master.errors?.required">
+        Master is required!
+    </p>
+
+    <input class="modal-input" type="text" placeholder="Time" formControlName="time">
+    <p class="error-message-under-field" *ngIf="time.errors?.required">
+        Time is required!
+    </p>
+    
+    <button class="btn-with-border" type="submit">Do Order</button>
+</form>

@@ -22,19 +22,4 @@ export class AdminsPageComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getAll().subscribe(() => {})
   }
-
-  createPersonsForUsers() {
-    this.userService.users.forEach(user => {
-      if (user.roles.includes('Master')) {
-        this.userService.createMaster(user.id)
-          .subscribe(master => console.log(master))
-      }
-      else {
-        this.userService.createClient(user.id)
-          .subscribe(client => console.log(client))
-      }
-    });
-
-    console.log('done!')
-  }
 }

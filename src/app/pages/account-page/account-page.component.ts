@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalTypes } from 'src/app/enums/modal-types';
@@ -50,25 +50,18 @@ export class AccountPageComponent implements OnInit {
   }
 
   submitPhone() {
-    if (this.authService.currentUser.isPersonExists) {
-      this.personService.getClientByUserId(this.authService.currentUser.id)
+    this.personService.getClientByUserId(this.authService.currentUser.id)
         .subscribe(client => {
-          this.personService.updateClient({
-            id: client.id,
+          this.personService.updateClient(client.id, {
+            surname: client.surname,
+            name: client.name,
+            middleName: client.middleName,
+            isBanned: client.isBanned,
             phoneNumber: this.phoneForm.value.phone as string
           })
             .subscribe(() => 
               this.authService.currentUser.phoneNumber = this.phoneForm.value.phone as string)
         })
-    }
-    else {
-      this.personService.createClient({
-        userId: this.authService.currentUser.id,
-        phoneNumber: this.phoneForm.value.phone as string
-      })
-        .subscribe(() => 
-          this.authService.currentUser.phoneNumber = this.phoneForm.value.phone as string)
-    }
   }
 
 }

@@ -1,0 +1,9 @@
+<form class="flex-form" [formGroup]="form" (ngSubmit)="submit()">
+    <input type="file" style="display: none;" #input (change)="onFileUpload($event)">
+    <button class="btn-with-border" type="button" (click)="triggerClick()">Choose</button>
+
+    <img *ngIf="imagePreview" [src]="imagePreview" alt="Your photo">
+
+    <button class="btn-with-border" type="submit">Save</button>
+</form>
+
