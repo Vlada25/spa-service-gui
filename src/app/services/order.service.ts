@@ -22,7 +22,6 @@ export class OrderService {
       )
   }
 
-  //TODO: change order model
   create(order: IOrder): Observable<IOrder> {
     return this.httpClient.post<IOrder>('https://localhost:7142/Orders', order)
       .pipe(

@@ -15,6 +15,7 @@ export class AuthenticationService {
 
   private token = ''
   currentUser: IUser
+  currentPassword: string
   
   constructor(
     private httpClient: HttpClient,
@@ -23,6 +24,7 @@ export class AuthenticationService {
     private personService: PersonService) { }
 
   login(loginUser: ILoginUser): Observable<{token: string}> {
+    this.currentPassword = loginUser.password
     return this.httpClient.post<{token: string}>('https://localhost:7142/Accounts/Login', loginUser)
       .pipe(
         tap(({token}) => {
@@ -48,6 +50,7 @@ export class AuthenticationService {
     this.setToken('')
     localStorage.setItem('token', '')
     localStorage.setItem('login', '')
+    this.currentUser.userName = ""
     location.reload()
   }
 

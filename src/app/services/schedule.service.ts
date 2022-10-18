@@ -23,16 +23,10 @@ export class ScheduleService {
       )
   }
 
-  create(schedule: ISchedule, clientId: string): Observable<ISchedule> {
+  create(schedule: ISchedule): Observable<ISchedule> {
     return this.httpClient.post<ISchedule>('https://localhost:7142/Schedules', schedule)
       .pipe(
-        tap(sch => {
-          console.log(sch)
-          this.orderService.create({
-            scheduleId: String(sch.id),
-            clientId: clientId
-          }).subscribe(() => {})
-        })
+        tap(sch => console.log(sch))
       )
   }
 }

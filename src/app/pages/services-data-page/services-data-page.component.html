@@ -4,7 +4,8 @@
     <div *ngIf="spaServiceService.spaServices">
         <app-spa-service
              *ngFor="let spaService of spaServiceService.spaServices"
-             [spaService]="spaService">
+             [spaService]="spaService"
+             [serviceType]="serviceTypeService.serviceType">
         </app-spa-service> 
     </div>
 </div>

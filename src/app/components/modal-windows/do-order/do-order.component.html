@@ -1,16 +1,18 @@
-<form class="flex-form" [formGroup]="form" (ngSubmit)="doOrder()">
-    <!-- <input class="modal-input" type="text" placeholder="Master" formControlName="master"> -->
-    <select class="modal-input">
-        <option *ngFor="let master of personService.mastersByAddress"></option>
-    </select>
-    <p class="error-message-under-field" *ngIf="master.errors?.required">
-        Master is required!
-    </p>
+<form class="flex-form" [formGroup]="form" (ngSubmit)="submit()">
 
-    <input class="modal-input" type="text" placeholder="Time" formControlName="time">
+    <select class="modal-input" formControlName="masterFio">
+        <option selected>Select master</option>
+        <option *ngFor="let master of personService.mastersByAddress">
+            {{ master.surname }} {{ master.name}} {{ master.middleName }}</option>
+    </select>
+
+    <input class="modal-input" type="datetime-local" placeholder="Time" formControlName="time">
     <p class="error-message-under-field" *ngIf="time.errors?.required">
         Time is required!
     </p>
+    <span class="error-message-under-field">
+        You should choose time from 8:00 till {{untilTime}}
+    </span>
     
     <button class="btn-with-border" type="submit">Do Order</button>
 </form>

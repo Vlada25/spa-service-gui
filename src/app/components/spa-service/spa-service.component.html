@@ -19,7 +19,7 @@
 
     <div *ngIf="modalService.isOrder$ | async">
         <app-modal title="Sign Up For Spa Procedure" *ngIf="modalService.isVisible$ | async">
-            <app-do-order [spaService]="spaService"></app-do-order>
+            <app-do-order [spaService]="spaService" [serviceType]="serviceType"></app-do-order>
         </app-modal>
     </div>
 </div>

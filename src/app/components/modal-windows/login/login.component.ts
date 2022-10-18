@@ -52,8 +52,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authService.getByLogin(this.form.value.login as string)
         .subscribe(() => {})
       this.modalService.close()
-      alert('You entered successfully!')
-      //location.reload()
     })
   }
 }

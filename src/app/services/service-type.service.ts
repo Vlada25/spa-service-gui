@@ -10,6 +10,7 @@ import { PhotoService } from './photo.service';
 export class ServiceTypeService {
 
   serviceTypes: IServiceType[] = []
+  serviceType: IServiceType
 
   constructor(
     private httpClient: HttpClient,
@@ -26,6 +27,13 @@ export class ServiceTypeService {
           }
           this.serviceTypes = servTypes
         })
+      )
+  }
+
+  get(id: string | undefined): Observable<IServiceType> {
+    return this.httpClient.get<IServiceType>('https://localhost:7142/ServiceTypes/' + id)
+      .pipe(
+        tap(st => this.serviceType = st)
       )
   }
 
