@@ -1,0 +1,14 @@
+<div class="main-container">
+
+    <h2>Manage orders</h2>
+    <hr>
+
+    <input class="search-input" type="date" [(ngModel)]="date">
+
+    <div *ngIf="scheduleService.schedules">
+        <app-master-order
+             *ngFor="let schedule of scheduleService.schedules | searchMasterOrderDate: date"
+             [schedule]="schedule">
+         </app-master-order> 
+     </div>
+</div>

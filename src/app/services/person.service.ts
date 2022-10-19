@@ -10,6 +10,7 @@ import { IMaster } from '../models/master';
 export class PersonService {
 
   currentClient: IClient
+  currentMaster: IMaster
   mastersByAddress: Array<IMaster>
 
   constructor(private httpClient: HttpClient) { }
@@ -18,6 +19,13 @@ export class PersonService {
     return this.httpClient.get<IClient>('https://localhost:7142/Clients/Users/' + userId)
       .pipe(
         tap(client => this.currentClient = client)
+      )
+  }
+
+  getMasterByUserId(userId: string): Observable<IMaster> {
+    return this.httpClient.get<IMaster>('https://localhost:7142/Masters/Users/' + userId)
+      .pipe(
+        tap(master => this.currentMaster = master)
       )
   }
 

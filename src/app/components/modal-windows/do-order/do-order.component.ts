@@ -94,7 +94,7 @@ export class DoOrderComponent implements OnInit {
           })
           .subscribe(sch => {
             this.orderService.create({
-              clientId: this.authService.currentUser.id,
+              clientId: this.personService.currentClient.id,
               scheduleId: sch.id,
               status: "Not Started",
               clientSurname: this.authService.currentUser.surname,

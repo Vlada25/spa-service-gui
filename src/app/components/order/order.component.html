@@ -1,5 +1,11 @@
-<div style="border: 1px solid black">
-    <p>Id: {{ order.id }}</p>
-    <p>Client Id: {{ order.clientId }}</p>
-    <p>Schedule Id: {{ order.scheduleId }}</p>
+<div class="order-container">
+    <p>
+        <span class="blue-text">Date & Time: </span> {{ date }}
+        <span class="blue-text"> from </span> {{ startTime }}
+        <span class="blue-text"> till </span> {{ endTime }}</p>
+    <p><span class="blue-text">Master: </span> {{ scheduleService.schedule.masterName }} {{ scheduleService.schedule.masterSurname }}</p>
+    <p><span class="blue-text">Service: </span> {{ scheduleService.schedule.serviceName }}</p>
+    <p><span class="blue-text">Price: </span> {{ scheduleService.schedule.servicePrice }}</p>
+    <p><span class="blue-text">Address: </span> {{ scheduleService.schedule.address }}</p>
+    <p><span class="blue-text">Status: </span> {{ order.status }}</p>
 </div>

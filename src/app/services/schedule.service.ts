@@ -10,14 +10,26 @@ import { OrderService } from './order.service';
 export class ScheduleService {
 
   schedules: ISchedule[] = []
+  schedule: ISchedule
 
-  constructor(
-    private httpClient: HttpClient,
-    private orderService: OrderService
-  ) { }
+  constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<ISchedule[]> {
     return this.httpClient.get<ISchedule[]>('https://localhost:7142/Schedules')
+      .pipe(
+        tap(sch => this.schedules = sch)
+      )
+  }
+
+  getById(id: string | undefined): Observable<ISchedule> {
+    return this.httpClient.get<ISchedule>('https://localhost:7142/Schedules/' + id)
+      .pipe(
+        tap(sch => this.schedule = sch)
+      )
+  }
+
+  getByMasterId(masterId: string | undefined): Observable<ISchedule[]> {
+    return this.httpClient.get<ISchedule[]>('https://localhost:7142/Schedules/Masters/' + masterId)
       .pipe(
         tap(sch => this.schedules = sch)
       )

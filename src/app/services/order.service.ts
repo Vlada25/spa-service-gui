@@ -9,6 +9,7 @@ import { IOrder } from '../models/order';
 export class OrderService {
 
   orders: IOrder[]
+  currentOrder: IOrder
   
   constructor(
     private httpClient: HttpClient) { }
@@ -22,6 +23,24 @@ export class OrderService {
       )
   }
 
+  getByClientId(clientId: string | undefined): Observable<IOrder[]> {
+    return this.httpClient.get<IOrder[]>('https://localhost:7142/Orders/Clients/' + clientId)
+      .pipe(
+        tap(orders => {
+          this.orders = orders
+        })
+      )
+  }
+
+  getByScheduleId(scheduleId: string | undefined): Observable<IOrder> {
+    return this.httpClient.get<IOrder>('https://localhost:7142/Orders/Schedules/' + scheduleId)
+      .pipe(
+        tap(order => {
+          this.currentOrder = order
+        })
+      )
+  }
+
   create(order: IOrder): Observable<IOrder> {
     return this.httpClient.post<IOrder>('https://localhost:7142/Orders', order)
       .pipe(
@@ -29,4 +48,7 @@ export class OrderService {
       )
   }
 
+  update(id: string | undefined, order: IOrder): Observable<string> {
+    return this.httpClient.put<string>('https://localhost:7142/Orders/' + id, order)
+  }
 }

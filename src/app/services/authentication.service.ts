@@ -15,7 +15,6 @@ export class AuthenticationService {
 
   private token = ''
   currentUser: IUser
-  currentPassword: string
   
   constructor(
     private httpClient: HttpClient,
@@ -24,12 +23,12 @@ export class AuthenticationService {
     private personService: PersonService) { }
 
   login(loginUser: ILoginUser): Observable<{token: string}> {
-    this.currentPassword = loginUser.password
     return this.httpClient.post<{token: string}>('https://localhost:7142/Accounts/Login', loginUser)
       .pipe(
         tap(({token}) => {
           this.setToken(token)
           localStorage.setItem('token', 'Bearer ' + token)
+          localStorage.setItem('login', loginUser.userName)
          })
       )
   }
@@ -39,7 +38,7 @@ export class AuthenticationService {
   }
 
   getToken(): string {
-    return 'Bearer ' + this.token
+    return this.token
   }
 
   isAuthorized(): boolean {
@@ -49,8 +48,6 @@ export class AuthenticationService {
   logOut() {
     this.setToken('')
     localStorage.setItem('token', '')
-    localStorage.setItem('login', '')
-    this.currentUser.userName = ""
     location.reload()
   }
 
@@ -73,7 +70,13 @@ export class AuthenticationService {
             .subscribe(roles => {
               u.roles = roles
               if (roles.includes('Master')) {
-                
+                this.personService.getMasterByUserId(u.id)
+                  .subscribe(m => {
+                    u.phoneNumber = m.phoneNumber
+                    u.surname = m.surname
+                    u.name = m.name
+                    u.middleName = m.middleName
+                  })
               }
               else {
                 this.personService.getClientByUserId(u.id)
@@ -82,12 +85,10 @@ export class AuthenticationService {
                     u.surname = c.surname
                     u.name = c.name
                     u.middleName = c.middleName
-                    console.log(u)
                   })
               }
             })
           this.currentUser = u
-          localStorage.setItem('login', u.userName)
         })
       )
   }
@@ -100,6 +101,15 @@ export class AuthenticationService {
   isAdmin(): boolean { 
     if (this.currentUser != null){
       if (this.currentUser.roles?.includes('Admin')){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  isMaster(): boolean { 
+    if (this.currentUser != null){
+      if (this.currentUser.roles?.includes('Master')){
         return true;
       }
     }

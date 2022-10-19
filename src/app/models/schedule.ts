@@ -2,8 +2,8 @@ export interface ISchedule {
     id?: string
     masterId?: string
     serviceId: string
-    startTime: any
-    endTime: any
+    startTime: string
+    endTime: string
     masterSurname?: string
     masterName?: string
     serviceName: string

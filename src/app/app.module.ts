@@ -24,6 +24,10 @@ import { DoOrderComponent } from './components/modal-windows/do-order/do-order.c
 import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import { OrderComponent } from './components/order/order.component';
 import { PreLoadPhotoComponent } from './components/modal-windows/pre-load-photo/pre-load-photo.component';
+import { MastersPageComponent } from './pages/masters-page/masters-page.component';
+import { MasterOrderComponent } from './components/master-order/master-order.component';
+import { FilterOrderPipe } from './pipes/filter-order.pipe';
+import { SearchMasterOrderDatePipe } from './pipes/search-master-order-date.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { PreLoadPhotoComponent } from './components/modal-windows/pre-load-photo
     DoOrderComponent,
     OrdersPageComponent,
     OrderComponent,
-    PreLoadPhotoComponent
+    PreLoadPhotoComponent,
+    MastersPageComponent,
+    MasterOrderComponent,
+    FilterOrderPipe,
+    SearchMasterOrderDatePipe
   ],
   imports: [
     BrowserModule,

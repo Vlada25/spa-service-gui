@@ -1,9 +1,20 @@
 <div class="main-container">
+    <h2>Your orders</h2>
+    <hr>
+
+    <select class="search-input" [(ngModel)]="status">
+        <option>All</option>
+        <option>Not Started</option>
+        <option>In Process</option>
+        <option>Done</option>
+        <option>Canceled</option>
+    </select>
+
     <p *ngIf="loading">Loading...</p>
 
     <div *ngIf="orderService.orders">
        <app-order
-            *ngFor="let order of orderService.orders"
+            *ngFor="let order of orderService.orders | filterOrder: status"
             [order]="order">
         </app-order> 
     </div>

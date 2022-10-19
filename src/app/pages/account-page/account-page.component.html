@@ -61,11 +61,17 @@
                 </form>
             </div>
 
-            <hr>
+            <div *ngIf="!authService.isMaster()">
+                <hr>
 
-            <button class="btn-with-border" style="margin-bottom: 20px;" (click)="showOrders()">My orders</button>
+                <button 
+                    class="btn-with-border" 
+                    style="margin-bottom: 20px;" 
+                    (click)="showOrders()">
+                    My orders</button>
 
-            <hr>
+                <hr>
+            </div>
 
             <div style="margin-top: 70px">
                 <p><span class="blue-text">Phone: </span><span class="f-italic">{{ authService.currentUser.phoneNumber }}</span></p>

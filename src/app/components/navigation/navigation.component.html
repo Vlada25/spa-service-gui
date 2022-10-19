@@ -5,5 +5,6 @@
         <a routerLink="/services">Services</a>
         <a routerLink="/account">Account</a> 
         <a *ngIf="authService.isAdmin()" routerLink="/forAdmins">For Admins</a>
+        <a *ngIf="authService.isMaster()" routerLink="/masters">For Masters</a>
     </div>
 </nav>
