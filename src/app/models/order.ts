@@ -5,4 +5,7 @@ export interface IOrder {
     status: string
     clientSurname?: string
     clientName?: string
+
+    date?: string
+    masterSurname?: string
 }

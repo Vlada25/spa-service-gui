@@ -1,4 +1,10 @@
 <form class="flex-form" [formGroup]="form" (ngSubmit)="submit()">
+    
+    <input type="file" style="display: none;" #input (change)="onFileUpload($event)">
+    <button class="btn-with-border" type="button" (click)="triggerClick()">Choose Photo</button>
+
+    <img *ngIf="imagePreview" [src]="imagePreview" alt="Service photo">
+
     <input class="modal-input" type="text" placeholder="Name" formControlName="name">
     <p class="error-message-under-field" *ngIf="name.errors?.required">
         Name is required!
@@ -7,16 +13,6 @@
     <input class="modal-input" type="text" placeholder="Lasting (min)" formControlName="lastingInMinutes">
     <p class="error-message-under-field" *ngIf="lastingInMinutes.errors?.required">
         Lasting is required!
-    </p>
-
-    <div class="photo-url-block">
-        <input class="modal-input photo-url-input" type="text" placeholder="Photo Url" formControlName="photoUrl">
-        <button class="btn-with-border" (click)="findPhoto()">Find</button>
-    </div>
-    <!-- TODO: photoService.photo.url -->
-    <img class="photo" *ngIf="showPhoto" [src]="" alt="Selected photo">
-    <p class="error-message-under-field" *ngIf="photoUrl.errors?.required">
-        Photo Url is required!
     </p>
 
     <input class="modal-input" type="text" placeholder="Description" formControlName="description">

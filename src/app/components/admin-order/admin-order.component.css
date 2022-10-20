@@ -1,0 +1,11 @@
+.order-container {
+    box-sizing: border-box;
+    padding: 0 5% 0 5%;
+    border: 1px solid #10C9C3;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.order-buttons {
+    padding-bottom: 20px;
+}

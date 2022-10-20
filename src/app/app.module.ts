@@ -28,6 +28,9 @@ import { MastersPageComponent } from './pages/masters-page/masters-page.componen
 import { MasterOrderComponent } from './components/master-order/master-order.component';
 import { FilterOrderPipe } from './pipes/filter-order.pipe';
 import { SearchMasterOrderDatePipe } from './pipes/search-master-order-date.pipe';
+import { AdminOrdersPageComponent } from './pages/admin-orders-page/admin-orders-page.component';
+import { AdminOrderComponent } from './components/admin-order/admin-order.component';
+import { SearchAdminOrderPipe } from './pipes/search-admin-order.pipe';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { SearchMasterOrderDatePipe } from './pipes/search-master-order-date.pipe
     MastersPageComponent,
     MasterOrderComponent,
     FilterOrderPipe,
-    SearchMasterOrderDatePipe
+    SearchMasterOrderDatePipe,
+    AdminOrdersPageComponent,
+    AdminOrderComponent,
+    SearchAdminOrderPipe
   ],
   imports: [
     BrowserModule,

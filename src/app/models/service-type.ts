@@ -7,5 +7,3 @@ export interface IServiceType {
     photoId: string
     photoSrc?: string
 }
-
-// TODO: photo url

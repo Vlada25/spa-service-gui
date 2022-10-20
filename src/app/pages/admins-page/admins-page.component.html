@@ -1,17 +1,10 @@
 <div class="main-container">
     
     <div class="flex-block">
-        <button class="btn-with-border" (click)="modalService.open(photo)">Create Photo</button>
-        <br>
         <button class="btn-with-border" (click)="modalService.open(serviceType)">Create Service Type</button>
+        <br>
+        <button class="btn-with-border" (click)="viewOrders()">View Orders</button>
     </div>
-    
-    <!-- TODO: solve -->
-    <!-- <div *ngIf="modalService.isPhoto$ | async">
-        <app-modal title="Create Photo" *ngIf="modalService.isVisible$ | async">
-            <app-create-photo></app-create-photo>
-        </app-modal>
-    </div> -->
 
     <div *ngIf="modalService.isServiceType$ | async">
         <app-modal title="Create Service Type" *ngIf="modalService.isVisible$ | async">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { PhotoService } from 'src/app/services/photo.service';
@@ -31,6 +31,10 @@ export class CreateServiceTypeComponent implements OnInit {
     ]),
   })
 
+  @ViewChild('input') inputRef: ElementRef
+  image: File
+  imagePreview: any
+  
   constructor(
     private serviceTypeService: ServiceTypeService,
     public photoService: PhotoService,
@@ -59,24 +63,35 @@ export class CreateServiceTypeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // TODO: need to get filename
-  findPhoto(): void {
-
-    // this.photoService.getByUrl(url).subscribe(() => {})
-
-    this.showPhoto = true
-  }
-
   submit() {
-    this.serviceTypeService.create({
-      name: this.form.value.name as string,
-      lastingInMinutes: Number(this.form.value.lastingInMinutes as string),
-      description: this.form.value.description as string,
-      category: this.form.value.category as string,
-      photoId: String("photoId")
-    }).subscribe( () => {
-      this.modalService.close()
-    })
+    this.photoService.create(this.image)
+      .subscribe(photo => {
+        this.serviceTypeService.create({
+          name: this.form.value.name as string,
+          lastingInMinutes: Number(this.form.value.lastingInMinutes as string),
+          description: this.form.value.description as string,
+          category: this.form.value.category as string,
+          photoId: photo.id as string
+        }).subscribe( () => {
+          this.modalService.close()
+        })
+      })
   }
 
+  triggerClick(){
+    this.inputRef.nativeElement.click()
+  }
+
+  onFileUpload(event: any){
+    const file = event.target.files[0]
+    this.image = file
+
+    const reader = new FileReader()
+
+    reader.onload = () => {
+      this.imagePreview = reader.result
+    }
+
+    reader.readAsDataURL(file)
+  }
 }

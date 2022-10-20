@@ -1,0 +1,21 @@
+<div class="order-container">
+    <p>
+        <span class="blue-text">Date & Time: </span> {{ date }}
+        <span class="blue-text"> from </span> {{ startTime }}
+        <span class="blue-text"> till </span> {{ endTime }}</p>
+    <p><span class="blue-text">Master: </span> {{ scheduleService.schedule.masterName }} {{ scheduleService.schedule.masterSurname }}</p>
+    <p><span class="blue-text">Master: </span> {{ order.clientName }} {{ order.clientSurname }}</p>
+    <p><span class="blue-text">Service: </span> {{ scheduleService.schedule.serviceName }}</p>
+    <p><span class="blue-text">Price: </span> {{ scheduleService.schedule.servicePrice }}</p>
+    <p><span class="blue-text">Address: </span> {{ scheduleService.schedule.address }}</p>
+    <p><span class="blue-text">Status: </span> {{ order.status }}</p>
+
+    <div class="order-buttons">
+
+        <button class="btn-with-border" (click)="setStatus('Not Started')">Set 'Not Started'</button>
+        <button class="btn-with-border" style="margin-left: 20px;" (click)="setStatus('In Process')">Set 'In Process'</button>
+        <button class="btn-with-border" style="margin-left: 20px;" (click)="setStatus('Done')">Set 'Done'</button>
+        <button class="btn-with-border" style="margin-left: 20px;" (click)="setStatus('Canceled')">Set 'Canceled'</button>
+
+    </div>
+</div>

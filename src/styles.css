@@ -77,3 +77,12 @@ hr {
     margin-top: 50px;
     margin-bottom: 10px;
 }
+
+.search-input-2 {
+    width: 400px;
+    padding: 5px 0 5px 10px;
+    border: 1px solid #10C9C3;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

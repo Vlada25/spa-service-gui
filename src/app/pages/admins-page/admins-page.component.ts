@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalTypes } from 'src/app/enums/modal-types';
 import { ModalService } from 'src/app/services/modal.service';
 import { PersonService } from 'src/app/services/person.service';
@@ -17,9 +18,14 @@ export class AdminsPageComponent implements OnInit {
   constructor(
     public modalService: ModalService,
     public personService: PersonService,
-    public userService: UserService) { }
+    public userService: UserService,
+    public router: Router) { }
 
   ngOnInit(): void {
     this.userService.getAll().subscribe(() => {})
+  }
+
+  viewOrders() {
+    this.router.navigate(['/adminOrders'])
   }
 }

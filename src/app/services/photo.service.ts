@@ -31,7 +31,12 @@ export class PhotoService {
   }
 
   create(photo: File): Observable<IPhoto> {
-    return this.httpClient.post<IPhoto>('https://localhost:7142/Photos/', photo)
+    const body = new FormData();
+    body.append("file", photo, photo.name)
+    return this.httpClient.post<IPhoto>('https://localhost:7142/Photos', body)
+      .pipe(
+        tap(photo => console.log(photo))
+      )
   }
 
   delete(filename: string | undefined): Observable<string> {
@@ -45,8 +50,10 @@ export class PhotoService {
     return this.httpClient.get<string>('https://localhost:7142/Photos/Users/' + userId)
   }
 
-  createUserPhoto(userId: string, userPhoto: File): Observable<IUserPhoto> {
-    return this.httpClient.post<IUserPhoto>('https://localhost:7142/Photos/Users/' + userId, userPhoto);
+  createUserPhoto(userId: string, userPhoto: File): any {
+    const body = new FormData();
+    body.append("file", userPhoto, userPhoto.name)
+    return this.httpClient.post<IUserPhoto>('https://localhost:7142/Photos/Users/' + userId, body);
   }
 
   deleteUserPhotoByUserId(userId: string): Observable<string> {

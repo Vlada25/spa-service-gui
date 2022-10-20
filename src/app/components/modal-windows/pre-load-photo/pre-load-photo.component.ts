@@ -1,7 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ModalService } from 'src/app/services/modal.service';
 import { PhotoService } from 'src/app/services/photo.service';
+import { ModalComponent } from '../../modal/modal.component';
 
 @Component({
   selector: 'app-pre-load-photo',
@@ -25,7 +27,8 @@ export class PreLoadPhotoComponent implements OnInit {
   
   constructor(
     public authService: AuthenticationService,
-    public photosService: PhotoService
+    public photosService: PhotoService,
+    public modalService: ModalService
     ) { }
 
   ngOnInit(): void {
@@ -33,7 +36,10 @@ export class PreLoadPhotoComponent implements OnInit {
 
   submit(){
     this.photosService.createUserPhoto(this.authService.currentUser.id, this.image)
-      .subscribe(() => {})
+      .subscribe(() => {
+        this.modalService.close()
+        location.reload()
+      })
   }
 
   triggerClick(){

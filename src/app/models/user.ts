@@ -9,4 +9,3 @@ export interface IUser {
     roles: string[]
     phoneNumber?: string
 }
-// TODO: move fields to client and master or do smt else

@@ -1,0 +1,27 @@
+<div class="main-container">
+
+    <h2>Manage orders</h2>
+    <hr>
+
+    <select class="search-input" [(ngModel)]="status">
+        <option>All</option>
+        <option>Not Started</option>
+        <option>In Process</option>
+        <option>Done</option>
+        <option>Canceled</option>
+    </select>
+    <br>
+    <input class="search-input-2" type="date" [(ngModel)]="date">
+    <br>
+    <input class="search-input-2" type="text" placeholder="Client surname" [(ngModel)]="clientSurname">
+    <br>
+    <input class="search-input-2" type="text" placeholder="Master surname" [(ngModel)]="masterSurname">
+
+    <div *ngIf="orderService.orders">
+        <app-admin-order
+             *ngFor="let order of orderService.orders | searchAdminOrder: status: clientSurname: masterSurname: date"
+             [order]="order">
+         </app-admin-order> 
+     </div>
+</div>
+

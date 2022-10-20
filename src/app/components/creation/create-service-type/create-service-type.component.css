@@ -1,19 +1,5 @@
-.photo-url-input {
-    width: 85%;
-    margin-right: 20px;
-    height: 18px;
-}
-
-.photo-url-block {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.photo {
-    width: 300px;
-    box-shadow: 0 0 7px rgba(16, 201, 195, 0.5);
-    margin-bottom: 10px;
+img {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 20px;
 }
