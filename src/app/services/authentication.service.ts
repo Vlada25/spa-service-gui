@@ -7,6 +7,7 @@ import { IUser } from '../models/user';
 import { PersonService } from './person.service';
 import { PhotoService } from './photo.service';
 import { UserService } from './user.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthenticationService {
     private personService: PersonService) { }
 
   login(loginUser: ILoginUser): Observable<{token: string}> {
-    return this.httpClient.post<{token: string}>('https://localhost:7142/Accounts/Login', loginUser)
+    return this.httpClient.post<{token: string}>(environment.apiUrl + 'Accounts/Login', loginUser)
       .pipe(
         tap(({token}) => {
           this.setToken(token)
@@ -52,14 +53,14 @@ export class AuthenticationService {
   }
 
   register(registerUser: IRegisterUser): Observable<string> {
-    return this.httpClient.post<string>('https://localhost:7142/Accounts/Clients/Register', registerUser)
+    return this.httpClient.post<string>(environment.apiUrl + 'Accounts/Clients/Register', registerUser)
       .pipe(
         tap(mes => console.log(mes))
       )
   }
 
   getByLogin(login: string): Observable<IUser> {
-    return this.httpClient.get<IUser>('https://localhost:7142/Users/ByLogin/' + login)
+    return this.httpClient.get<IUser>(environment.apiUrl + 'Users/ByLogin/' + login)
       .pipe(
         tap(u => {
           this.photoService.getPhotoByUserId(u.id)

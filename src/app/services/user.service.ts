@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from '../models/user';
 import { Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
     private httpClient: HttpClient) { }
 
   getAll(): Observable<IUser[]> {
-    return this.httpClient.get<IUser[]>('https://localhost:7142/Users')
+    return this.httpClient.get<IUser[]>(environment.apiUrl + 'Users')
       .pipe(
         tap(users => {
           for (let i = 0; i < users.length; i++){
@@ -28,6 +29,6 @@ export class UserService {
   }
 
   getUserRoles(login: string): Observable<string[]> {
-    return this.httpClient.get<string[]>('https://localhost:7142/Roles/' + login)
+    return this.httpClient.get<string[]>(environment.apiUrl + 'Roles/' + login)
   }
 }

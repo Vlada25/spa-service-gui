@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http"
 import { Observable, tap } from 'rxjs';
 import { IServiceType } from '../models/service-type';
 import { PhotoService } from './photo.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ServiceTypeService {
     private photoService: PhotoService) { }
 
   getAll(): Observable<IServiceType[]> {
-    return this.httpClient.get<IServiceType[]>('https://localhost:7142/ServiceTypes')
+    return this.httpClient.get<IServiceType[]>(environment.apiUrl + 'ServiceTypes')
       .pipe(
         tap(servTypes => {
           for (let i = 0; i < servTypes.length; i++){
@@ -31,14 +32,14 @@ export class ServiceTypeService {
   }
 
   get(id: string | undefined): Observable<IServiceType> {
-    return this.httpClient.get<IServiceType>('https://localhost:7142/ServiceTypes/' + id)
+    return this.httpClient.get<IServiceType>(environment.apiUrl + 'ServiceTypes/' + id)
       .pipe(
         tap(st => this.serviceType = st)
       )
   }
 
   create(serviceType: IServiceType): Observable<IServiceType> {
-    return this.httpClient.post<IServiceType>('https://localhost:7142/ServiceTypes', serviceType)
+    return this.httpClient.post<IServiceType>(environment.apiUrl + 'ServiceTypes', serviceType)
       .pipe(
         tap(st => {
           this.serviceTypes.push(st)
@@ -48,7 +49,7 @@ export class ServiceTypeService {
   }
 
   delete(id: string | undefined): Observable<string> {
-    return this.httpClient.delete<string>('https://localhost:7142/ServiceTypes/' + id)
+    return this.httpClient.delete<string>(environment.apiUrl + 'ServiceTypes/' + id)
       .pipe(
         tap(mes => console.log(mes))
       )

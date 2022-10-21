@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { IOrder } from '../models/order';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class OrderService {
     private httpClient: HttpClient) { }
 
   getAll(): Observable<IOrder[]> {
-    return this.httpClient.get<IOrder[]>('https://localhost:7142/Orders')
+    return this.httpClient.get<IOrder[]>(environment.apiUrl + 'Orders')
       .pipe(
         tap(orders => {
           this.orders = orders
@@ -24,7 +25,7 @@ export class OrderService {
   }
 
   getByClientId(clientId: string | undefined): Observable<IOrder[]> {
-    return this.httpClient.get<IOrder[]>('https://localhost:7142/Orders/Clients/' + clientId)
+    return this.httpClient.get<IOrder[]>(environment.apiUrl + 'Orders/Clients/' + clientId)
       .pipe(
         tap(orders => {
           this.orders = orders
@@ -33,7 +34,7 @@ export class OrderService {
   }
 
   getByScheduleId(scheduleId: string | undefined): Observable<IOrder> {
-    return this.httpClient.get<IOrder>('https://localhost:7142/Orders/Schedules/' + scheduleId)
+    return this.httpClient.get<IOrder>(environment.apiUrl + 'Orders/Schedules/' + scheduleId)
       .pipe(
         tap(order => {
           this.currentOrder = order
@@ -42,13 +43,13 @@ export class OrderService {
   }
 
   create(order: IOrder): Observable<IOrder> {
-    return this.httpClient.post<IOrder>('https://localhost:7142/Orders', order)
+    return this.httpClient.post<IOrder>(environment.apiUrl + 'Orders', order)
       .pipe(
         tap(order => console.log(order))
       )
   }
 
   update(id: string | undefined, order: IOrder): Observable<string> {
-    return this.httpClient.put<string>('https://localhost:7142/Orders/' + id, order)
+    return this.httpClient.put<string>(environment.apiUrl + 'Orders/' + id, order)
   }
 }
