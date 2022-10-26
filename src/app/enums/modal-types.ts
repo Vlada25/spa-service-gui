@@ -3,5 +3,6 @@ export enum ModalTypes {
     register,
     serviceType,
     photo,
-    order
+    order,
+    feedback
 }

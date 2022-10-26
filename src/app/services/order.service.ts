@@ -24,6 +24,10 @@ export class OrderService {
       )
   }
 
+  getById(id: string | undefined): Observable<IOrder> {
+    return this.httpClient.get<IOrder>(environment.apiUrl + 'Orders/' + id)
+  }
+
   getByClientId(clientId: string | undefined): Observable<IOrder[]> {
     return this.httpClient.get<IOrder[]>(environment.apiUrl + 'Orders/Clients/' + clientId)
       .pipe(

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalTypes } from 'src/app/enums/modal-types';
 import { IServiceType } from 'src/app/models/service-type';
 import { ISpaService } from 'src/app/models/spa-service';
@@ -17,7 +18,8 @@ export class SpaServiceComponent{
 
   constructor(
     private authService: AuthenticationService,
-    public modalService: ModalService) {}
+    public modalService: ModalService,
+    public router: Router) {}
   
   signUpForProcedur() {
     if (!this.authService.isAuthorized()){
@@ -25,6 +27,15 @@ export class SpaServiceComponent{
     }
     else {
       this.modalService.open(ModalTypes.order)
+    }
+  }
+
+  showFeedbacks() {
+    if (!this.authService.isAuthorized()){
+      this.modalService.open(ModalTypes.login)
+    }
+    else {
+      this.router.navigate(['/feedbacks', this.spaService.id])
     }
   }
 }

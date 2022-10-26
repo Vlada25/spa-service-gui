@@ -31,6 +31,9 @@ import { SearchMasterOrderDatePipe } from './pipes/search-master-order-date.pipe
 import { AdminOrdersPageComponent } from './pages/admin-orders-page/admin-orders-page.component';
 import { AdminOrderComponent } from './components/admin-order/admin-order.component';
 import { SearchAdminOrderPipe } from './pipes/search-admin-order.pipe';
+import { FeedbackComponent } from './components/feedback/feedback.component';
+import { AddFeedbackComponent } from './components/modal-windows/add-feedback/add-feedback.component';
+import { FeedbacksPageComponent } from './pages/feedbacks-page/feedbacks-page.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { SearchAdminOrderPipe } from './pipes/search-admin-order.pipe';
     SearchMasterOrderDatePipe,
     AdminOrdersPageComponent,
     AdminOrderComponent,
-    SearchAdminOrderPipe
+    SearchAdminOrderPipe,
+    FeedbackComponent,
+    AddFeedbackComponent,
+    FeedbacksPageComponent
   ],
   imports: [
     BrowserModule,

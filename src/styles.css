@@ -86,3 +86,14 @@ hr {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.light-btn {
+    color: #10C9C3;
+    background-color: white;
+    border: 1px solid #10C9C3;
+    margin-bottom: 10px;
+}
+
+.light-btn:hover {
+    box-shadow: 0 0 10px rgba(16, 201, 195, 0.5);
+}

@@ -1,0 +1,21 @@
+.form-radio {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.form-radio > input {
+    transform: scale(2);
+}
+
+.mark-header {
+    font-size: 120%;
+    color: #10C9C3;
+}
+
+p {
+    text-align: center;
+}

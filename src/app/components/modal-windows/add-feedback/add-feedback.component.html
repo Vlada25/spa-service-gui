@@ -1,0 +1,22 @@
+<form class="flex-form" [formGroup]="form" (ngSubmit)="submit()">
+    <textarea class="modal-input" 
+        type="text" 
+        placeholder="Your comment" 
+        formControlName="comment"
+        rows="5">
+    </textarea>
+
+    <p class="mark-header">Mark</p>
+    <div class="form-radio">
+        <input type="radio" id="mark1" name="mark" value="1" formControlName="mark">
+        <input type="radio" id="mark2" name="mark" value="2" formControlName="mark">
+        <input type="radio" id="mark3" name="mark" value="3" formControlName="mark">
+        <input type="radio" id="mark4" name="mark" value="4" formControlName="mark">
+        <input type="radio" id="mark5" name="mark" value="5" formControlName="mark">
+    </div>
+    <p class="error-message-under-field" *ngIf="mark.errors?.required">
+        Mark is required!
+    </p>
+    
+    <button class="btn-with-border" type="submit">Save</button>
+</form>

@@ -13,6 +13,7 @@ export class ModalService {
   isServiceType$ = new BehaviorSubject<boolean>(false)
   isPhoto$ = new BehaviorSubject<boolean>(false)
   isOrder$ = new BehaviorSubject<boolean>(false)
+  isFeedback$ = new BehaviorSubject<boolean>(false)
 
   constructor() { }
 
@@ -33,6 +34,9 @@ export class ModalService {
       case ModalTypes.order:
         this.isOrder$.next(true)
         break
+      case ModalTypes.feedback:
+        this.isFeedback$.next(true)
+        break
     }
     this.isVisible$.next(true)
   }
@@ -44,5 +48,6 @@ export class ModalService {
     this.isServiceType$.next(false)
     this.isPhoto$.next(false)
     this.isOrder$.next(false)
+    this.isFeedback$.next(false)
   }
 }

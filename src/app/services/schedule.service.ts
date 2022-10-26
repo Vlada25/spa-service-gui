@@ -35,6 +35,13 @@ export class ScheduleService {
       )
   }
 
+  getByServiceId(serviceId: string | undefined): Observable<ISchedule[]> {
+    return this.httpClient.get<ISchedule[]>(environment.apiUrl + 'Schedules/Services/' + serviceId)
+      .pipe(
+        tap(sch => this.schedules = sch)
+      )
+  }
+
   create(schedule: ISchedule): Observable<ISchedule> {
     return this.httpClient.post<ISchedule>(environment.apiUrl + 'Schedules', schedule)
       .pipe(

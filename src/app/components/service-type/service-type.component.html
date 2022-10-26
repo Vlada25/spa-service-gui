@@ -4,26 +4,26 @@
         <p><span class="blue-text">Lasting (min): </span>{{ serviceType.lastingInMinutes }}</p>
         <p><span class="blue-text">Category: </span>{{ serviceType.category }}</p>
 
-        <button class="description-btn" (click)="description = !description">
+        <button class="light-btn" (click)="description = !description">
             {{ description ? 'Hide' : 'Show' }} Description
         </button>
 
         <p *ngIf="description" class="gray-text">{{ serviceType.description }}</p>
 
         <br>
-        <button class="description-btn" 
+        <button class="light-btn" 
             (click)="goToServicesDataPage(serviceType.name, serviceType.id)">
             Show addresses and price
         </button>
 
         <br>
-        <button class="description-btn"
+        <button class="light-btn"
             *ngIf="authService.isAdmin()"
             (click)="deleteServiceType()">
             Delete
         </button>
 
-        <button class="description-btn"
+        <button class="light-btn"
             *ngIf="authService.isAdmin()"
             style="margin-left: 20px;">
             Update

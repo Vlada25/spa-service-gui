@@ -8,4 +8,12 @@
     <p><span class="blue-text">Price: </span> {{ scheduleService.schedule.servicePrice }}</p>
     <p><span class="blue-text">Address: </span> {{ scheduleService.schedule.address }}</p>
     <p><span class="blue-text">Status: </span> {{ order.status }}</p>
+
+    <button class="light-btn" style="margin-right: 20px;" (click)="addFeedback()">add feedback</button>
+
+    <div *ngIf="modalService.isFeedback$ | async">
+        <app-modal title="Add Feedback" *ngIf="modalService.isVisible$ | async">
+            <app-add-feedback [order]="order"></app-add-feedback>
+        </app-modal>
+    </div>
 </div>

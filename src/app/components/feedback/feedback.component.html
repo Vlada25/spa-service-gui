@@ -1,0 +1,22 @@
+<div class="feedback-container">
+    <div class="mark">
+        <div class="circle" style="background-color: #10C9C3"></div>
+
+        <div class="circle" *ngIf="feedback.mark < 2"></div>
+        <div class="circle" style="background-color: #10C9C3" *ngIf="feedback.mark > 1"></div>
+
+        <div class="circle" *ngIf="feedback.mark < 3"></div>
+        <div class="circle" style="background-color: #10C9C3" *ngIf="feedback.mark > 2"></div>
+
+        <div class="circle" *ngIf="feedback.mark < 4"></div>
+        <div class="circle" style="background-color: #10C9C3" *ngIf="feedback.mark > 3"></div>
+
+        <div class="circle" *ngIf="feedback.mark < 5"></div>
+        <div class="circle" style="background-color: #10C9C3" *ngIf="feedback.mark > 4"></div>
+    </div>
+
+    <p><span class="blue-text">Client: </span> {{ order.clientName }} {{ order.clientSurname }}</p>
+    <p><span class="blue-text">Master: </span> {{ schedule.masterName }} {{ schedule.masterSurname }}</p>
+    <hr style="height: 0.5px;">
+    <p><span class="blue-text">Comment: </span> {{ feedback.comment }}</p>
+</div>

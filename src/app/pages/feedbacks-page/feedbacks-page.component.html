@@ -1,0 +1,13 @@
+<div class="main-container">
+     <h2>Feedbacks on "{{ serviceName }}"</h2>
+ 
+     <hr>
+ 
+     <div *ngIf="feedbacks">
+          <app-feedback
+               *ngFor="let f of feedbacks"
+               [feedback]="f">
+          </app-feedback> 
+     </div>
+     
+ </div>
